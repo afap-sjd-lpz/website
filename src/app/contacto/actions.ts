@@ -1,5 +1,7 @@
 "use server";
 
+import { checkRateLimit } from "@vercel/firewall";
+
 import type { ContactFormState } from "@/interfaces/contact-form.interface";
 import { validateContactForm } from "@/lib/contact-form/contact-form.validation";
 import {
@@ -15,6 +17,9 @@ const errorMessage =
   "No pudimos enviar tu mensaje en este momento. Por favor, inténtalo nuevamente.";
 const turnstileErrorMessage =
   "No pudimos completar la verificación anti-spam. Inténtalo nuevamente.";
+const rateLimitId = "afap-contact-form";
+const rateLimitMessage =
+  "Has realizado varios intentos en poco tiempo. Espera unos minutos antes de volver a intentarlo.";
 
 function getSuccessState(
   submissionId?: string,
@@ -43,6 +48,35 @@ export async function submitContactForm(
 
   if (isHoneypotFilled) {
     return getSuccessState();
+  }
+
+  try {
+    const rateLimit = await checkRateLimit(rateLimitId);
+
+    if (rateLimit.rateLimited) {
+      console.warn({
+        event: "contact_rate_limited",
+      });
+
+      return {
+        status: "error",
+        message: rateLimitMessage,
+        fieldErrors: {},
+        turnstileResetRequired: false,
+      };
+    }
+
+    if (rateLimit.error === "not-found") {
+      console.error({
+        event: "contact_rate_limit_check_failed",
+        category: "not_found",
+      });
+    }
+  } catch {
+    console.error({
+      event: "contact_rate_limit_check_failed",
+      category: "unavailable",
+    });
   }
 
   const privacyAccepted = formData.has("privacyAccepted");
