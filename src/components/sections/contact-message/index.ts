@@ -1,0 +1,1 @@
+export { ContactMessage } from "./ContactMessage";
