@@ -1,0 +1,21 @@
+import type { IconProps } from "./icon.types";
+
+export type HomeIconProps = IconProps;
+
+export function HomeIcon(props: HomeIconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="m3 11 9-8 9 8" />
+      <path d="M5 10v10h14V10M9 20v-6h6v6" />
+    </svg>
+  );
+}
