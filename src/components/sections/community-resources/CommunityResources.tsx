@@ -42,7 +42,7 @@ export function CommunityResources() {
   return (
     <Section
       aria-labelledby="community-resources-title"
-      className="pt-10 sm:pt-12 lg:pt-14"
+      className="pt-8 sm:pt-10 lg:pt-8"
     >
       <Container>
         <div className="mx-auto max-w-3xl text-center">

@@ -11,7 +11,7 @@ export function CommunityJoin() {
     <Section
       id="participar"
       aria-labelledby="community-join-title"
-      className="scroll-mt-24 py-10 sm:py-12 lg:py-14"
+      className="scroll-mt-24 pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-8 lg:pb-8"
     >
       <Container>
         <div className="grid items-center gap-10 overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:p-10">

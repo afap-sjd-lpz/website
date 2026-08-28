@@ -10,7 +10,7 @@ export function CommunityHero() {
   return (
     <Section
       aria-labelledby="community-hero-title"
-      className="pb-12 sm:pb-14 lg:pb-16"
+      className="pb-8 sm:pb-10 lg:pb-10"
     >
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
