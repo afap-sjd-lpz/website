@@ -22,7 +22,7 @@ const navigationIcons: Record<
 > = {
   "/": HomeIcon,
   "/quienes-somos": PeopleIcon,
-  "/recursos": BookIcon,
+  "/comunidad": BookIcon,
   "/contacto": MailIcon,
 };
 
@@ -144,7 +144,7 @@ export function Footer() {
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-4 border-t border-primary/25 pt-6 text-center text-sm text-muted sm:flex-row sm:justify-between sm:text-start">
-            <p>© 2026 AFAP San Juan de Dios - La Paz</p>
+            <p>© 2026 AFAP</p>
 
             <Link
               href="/politica-de-privacidad"

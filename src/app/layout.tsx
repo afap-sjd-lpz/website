@@ -13,9 +13,9 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "AFAP San Juan de Dios - La Paz",
+  title: "AFAP | Unidos por la salud mental",
   description:
-    "Asociación de Familiares y Amigos de Pacientes con Discapacidad Mental y/o Psíquica de San Juan de Dios - La Paz.",
+    "AFAP une a familias, amigos y personas comprometidas con la salud mental, la inclusión y la defensa de derechos en Bolivia.",
 };
 
 export default function RootLayout({

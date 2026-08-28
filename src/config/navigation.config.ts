@@ -10,8 +10,8 @@ export const navigationItems: NavigationItem[] = [
     href: "/quienes-somos",
   },
   {
-    label: "Recursos",
-    href: "/recursos",
+    label: "Comunidad y recursos",
+    href: "/comunidad",
   },
   {
     label: "Contacto",
