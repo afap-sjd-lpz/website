@@ -1,5 +1,7 @@
 export { BookIcon } from "./BookIcon";
 export type { BookIconProps } from "./BookIcon";
+export { CalendarIcon } from "./CalendarIcon";
+export type { CalendarIconProps } from "./CalendarIcon";
 export { CommunityIcon } from "./CommunityIcon";
 export type { CommunityIconProps } from "./CommunityIcon";
 export { EarIcon } from "./EarIcon";
@@ -15,6 +17,8 @@ export type { HomeIconProps } from "./HomeIcon";
 export type { IconProps } from "./icon.types";
 export { LocationIcon } from "./LocationIcon";
 export type { LocationIconProps } from "./LocationIcon";
+export { LockIcon } from "./LockIcon";
+export type { LockIconProps } from "./LockIcon";
 export { MailIcon } from "./MailIcon";
 export type { MailIconProps } from "./MailIcon";
 export { MenuIcon } from "./MenuIcon";

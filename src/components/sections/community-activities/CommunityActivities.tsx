@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/container";
-import { BookIcon } from "@/components/ui/icons";
+import { CalendarIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
 import { communityConfig } from "@/config/community.config";
 
@@ -10,41 +10,58 @@ export function CommunityActivities() {
       className="py-10 sm:py-12 lg:py-14"
     >
       <Container>
-        <div className="max-w-3xl">
-          <h2
-            id="community-activities-title"
-            className="text-3xl font-bold text-foreground sm:text-4xl"
-          >
-            Próximas actividades
-          </h2>
-          <p className="mt-4 text-lg leading-8 text-muted">
-            Reuniones, talleres y actividades organizadas o difundidas
-            por AFAP.
-          </p>
-        </div>
-
-        <div className="mt-8 overflow-hidden rounded-3xl border border-border bg-surface">
-          {communityConfig.calendarEmbedUrl ? (
-            <iframe
-              src={communityConfig.calendarEmbedUrl}
-              title="Calendario de actividades de AFAP"
-              loading="lazy"
-              className="h-128 w-full border-0"
+        <div className="grid gap-8 rounded-3xl border border-primary/20 bg-primary/10 p-6 sm:p-8 lg:grid-cols-[0.34fr_0.66fr] lg:gap-10 lg:p-10">
+          <div>
+            <span className="flex size-12 items-center justify-center rounded-full bg-primary/20 text-primary">
+              <CalendarIcon className="size-6" />
+            </span>
+            <h2
+              id="community-activities-title"
+              className="mt-6 text-3xl font-bold text-foreground sm:text-4xl"
+            >
+              Próximas actividades
+            </h2>
+            <div
+              aria-hidden="true"
+              className="mt-4 h-1 w-14 rounded-full bg-primary"
             />
-          ) : (
-            <div className="flex min-h-72 flex-col items-center justify-center px-6 py-12 text-center">
-              <span className="flex size-14 items-center justify-center rounded-full bg-primary/15 text-primary">
-                <BookIcon className="size-7" />
-              </span>
-              <h3 className="mt-5 text-xl font-bold text-foreground">
-                Estamos preparando nuestra agenda
-              </h3>
-              <p className="mt-3 max-w-xl leading-7 text-muted">
-                Próximamente encontrarás aquí información actualizada
-                sobre reuniones, talleres y otras actividades de AFAP.
+            <p className="mt-5 text-lg leading-8 text-muted">
+              Conoce nuestros talleres, charlas y espacios de encuentro.
+              Te invitamos a participar y ser parte de nuestra comunidad.
+            </p>
+
+            <aside className="mt-7 rounded-2xl border border-primary/20 bg-surface/70 p-5">
+              <h3 className="font-bold text-foreground">Importante</h3>
+              <p className="mt-2 text-sm leading-6 text-muted">
+                Algunas actividades pueden requerir inscripción previa.
+                Revisa el calendario y participa.
               </p>
-            </div>
-          )}
+            </aside>
+          </div>
+
+          <div className="min-h-96 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+            {communityConfig.calendarEmbedUrl ? (
+              <iframe
+                src={communityConfig.calendarEmbedUrl}
+                title="Calendario de actividades de AFAP"
+                loading="lazy"
+                className="h-128 min-h-96 w-full border-0"
+              />
+            ) : (
+              <div className="flex min-h-96 h-full flex-col items-center justify-center px-6 py-12 text-center">
+                <span className="flex size-14 items-center justify-center rounded-full bg-primary/15 text-primary">
+                  <CalendarIcon className="size-7" />
+                </span>
+                <h3 className="mt-5 text-xl font-bold text-foreground">
+                  Estamos preparando nuestra agenda
+                </h3>
+                <p className="mt-3 max-w-lg leading-7 text-muted">
+                  Próximamente publicaremos aquí nuestras actividades y
+                  encuentros.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </Container>
     </Section>
