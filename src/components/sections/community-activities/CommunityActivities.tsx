@@ -7,7 +7,7 @@ export function CommunityActivities() {
   return (
     <Section
       aria-labelledby="community-activities-title"
-      className="py-10 sm:py-12 lg:py-14"
+      className="pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-8 lg:pb-8"
     >
       <Container>
         <div className="grid gap-8 rounded-3xl border border-primary/20 bg-primary/10 p-6 sm:p-8 lg:grid-cols-[0.34fr_0.66fr] lg:gap-10 lg:p-10">
@@ -45,7 +45,7 @@ export function CommunityActivities() {
                 src={communityConfig.calendarEmbedUrl}
                 title="Calendario de actividades de AFAP"
                 loading="lazy"
-                className="h-128 min-h-96 w-full border-0"
+                className="h-[500px] w-full border-0 sm:h-[540px] lg:h-[560px]"
               />
             ) : (
               <div className="flex min-h-96 h-full flex-col items-center justify-center px-6 py-12 text-center">
