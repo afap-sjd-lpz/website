@@ -1,8 +1,5 @@
-import type { Metadata } from "next";
-import { Nunito_Sans } from "next/font/google";
-
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import type {Metadata} from "next";
+import {Nunito_Sans} from "next/font/google";
 
 import "./globals.css";
 
@@ -23,11 +20,7 @@ export default function RootLayout({
 }: LayoutProps<"/">) {
   return (
     <html lang="es" className={nunitoSans.variable}>
-      <body className="flex min-h-screen flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -10,7 +10,7 @@ import {
   type FormEvent,
 } from "react";
 
-import { submitContactForm } from "@/app/contacto/actions";
+import { submitContactForm } from "@/app/(site)/contacto/actions";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
