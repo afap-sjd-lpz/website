@@ -73,7 +73,7 @@ export const materialType = defineType({
           to: [{type: 'topic'}],
         }),
       ],
-      validation: (rule) => rule.required().min(1),
+      validation: (rule) => rule.required().min(1).unique(),
     }),
 
     defineField({

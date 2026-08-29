@@ -31,6 +31,7 @@ export const topicType = defineType({
       name: 'order',
       title: 'Orden',
       type: 'number',
+      validation: (rule) => rule.integer().min(0),
     }),
   ],
   preview: {

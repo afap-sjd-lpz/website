@@ -43,7 +43,7 @@ export const articleType = defineType({
       name: "content",
       title: "Contenido",
       type: "blockContent",
-      validation: (rule) => rule.required(),
+      validation: (rule) => rule.required().min(1),
     }),
 
     defineField({
@@ -56,7 +56,7 @@ export const articleType = defineType({
           to: [{ type: "topic" }],
         }),
       ],
-      validation: (rule) => rule.required().min(1),
+      validation: (rule) => rule.required().min(1).unique(),
     }),
 
     defineField({
@@ -70,6 +70,20 @@ export const articleType = defineType({
       name: "reviewedAt",
       title: "Última revisión",
       type: "date",
+      validation: (rule) =>
+        rule.custom((reviewedAt, context) => {
+          const publishedAt = context.document?.publishedAt;
+
+          if (
+            reviewedAt &&
+            typeof publishedAt === "string" &&
+            reviewedAt < publishedAt
+          ) {
+            return "La última revisión no puede ser anterior a la fecha de publicación.";
+          }
+
+          return true;
+        }),
     }),
 
     defineField({

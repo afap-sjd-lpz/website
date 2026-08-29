@@ -1,5 +1,36 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
+const YOUTUBE_VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/
+
+function getYouTubeVideoId(value: string): string | null {
+  try {
+    const url = new URL(value)
+
+    if (url.protocol !== 'https:' && url.protocol !== 'http:') return null
+
+    const hostname = url.hostname.replace(/^www\./, '')
+    let videoId: string | null = null
+
+    if (hostname === 'youtu.be') {
+      videoId = url.pathname.split('/').filter(Boolean)[0] ?? null
+    } else if (hostname === 'youtube.com' || hostname === 'm.youtube.com') {
+      if (url.pathname === '/watch') {
+        videoId = url.searchParams.get('v')
+      } else {
+        const [format, id] = url.pathname.split('/').filter(Boolean)
+
+        if (format === 'shorts' || format === 'live') {
+          videoId = id ?? null
+        }
+      }
+    }
+
+    return videoId && YOUTUBE_VIDEO_ID_PATTERN.test(videoId) ? videoId : null
+  } catch {
+    return null
+  }
+}
+
 export const videoType = defineType({
   name: 'video',
   title: 'Video',
@@ -40,22 +71,9 @@ export const videoType = defineType({
         rule.required().custom((value) => {
           if (!value) return true
 
-          try {
-            const url = new URL(value)
-            const hostname = url.hostname.replace(/^www\./, '')
-
-            if (
-              hostname === 'youtube.com' ||
-              hostname === 'm.youtube.com' ||
-              hostname === 'youtu.be'
-            ) {
-              return true
-            }
-
-            return 'La URL debe corresponder a YouTube.'
-          } catch {
-            return 'Introduce una URL válida.'
-          }
+          return getYouTubeVideoId(value)
+            ? true
+            : 'La URL debe corresponder a un video reproducible de YouTube.'
         }),
     }),
 
@@ -84,7 +102,7 @@ export const videoType = defineType({
           to: [{type: 'topic'}],
         }),
       ],
-      validation: (rule) => rule.required().min(1),
+      validation: (rule) => rule.required().min(1).unique(),
     }),
 
     defineField({

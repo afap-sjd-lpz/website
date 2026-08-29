@@ -13,6 +13,7 @@ export const accessibleImageType = defineType({
       options: {
         hotspot: true,
       },
+      validation: (rule) => rule.required(),
     }),
 
     defineField({
@@ -22,11 +23,9 @@ export const accessibleImageType = defineType({
       description:
         'Describe brevemente la imagen para personas que utilizan lectores de pantalla.',
       validation: (rule) =>
-        rule.custom((value, context) => {
-          const parent = context.parent as {image?: unknown} | undefined
-
-          if (parent?.image && !value) {
-            return 'El texto alternativo es obligatorio cuando se selecciona una imagen.'
+        rule.required().custom((value) => {
+          if (!value?.trim()) {
+            return 'El texto alternativo es obligatorio.'
           }
 
           return true
