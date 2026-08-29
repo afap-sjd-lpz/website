@@ -1,0 +1,1 @@
+export {ResourceLibraryHero} from './ResourceLibraryHero'

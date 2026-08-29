@@ -1,42 +1,7 @@
-import { Container } from "@/components/ui/container";
-import {
-  BookIcon,
-  CommunityIcon,
-  HeartIcon,
-  ShieldIcon,
-} from "@/components/ui/icons";
-import { Section } from "@/components/ui/section";
-
-const resources = [
-  {
-    title: "Orientación y bienestar",
-    description:
-      "Información y materiales de orientación para personas y familias vinculadas a la salud mental.",
-    Icon: HeartIcon,
-    iconClassName: "bg-primary/15 text-primary",
-  },
-  {
-    title: "Derechos y normativa",
-    description:
-      "Información sobre derechos, normativa y marcos relevantes para las personas y sus familias.",
-    Icon: ShieldIcon,
-    iconClassName: "bg-secondary/15 text-secondary",
-  },
-  {
-    title: "Materiales descargables",
-    description:
-      "Folletos, infografías, guías y otros materiales para consultar y compartir.",
-    Icon: BookIcon,
-    iconClassName: "bg-accent/15 text-accent",
-  },
-  {
-    title: "Videos y charlas",
-    description:
-      "Charlas, entrevistas y materiales audiovisuales sobre salud mental e inclusión.",
-    Icon: CommunityIcon,
-    iconClassName: "bg-primary/15 text-primary",
-  },
-] as const;
+import {LinkButton} from '@/components/ui/button'
+import {Container} from '@/components/ui/container'
+import {BookIcon} from '@/components/ui/icons'
+import {Section} from '@/components/ui/section'
 
 export function CommunityResources() {
   return (
@@ -45,49 +10,49 @@ export function CommunityResources() {
       className="pt-8 sm:pt-10 lg:pt-8"
     >
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <h2
-            id="community-resources-title"
-            className="text-3xl font-bold text-foreground sm:text-4xl"
-          >
-            Recursos para informarte y orientarte
-          </h2>
-          <div
+        <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-10 sm:px-10 lg:flex lg:items-center lg:justify-between lg:gap-12">
+          <span
             aria-hidden="true"
-            className="mx-auto mt-4 h-1 w-14 rounded-full bg-primary"
+            className="absolute -top-16 -right-10 size-44 rounded-full bg-secondary/15"
           />
-          <p className="mt-5 text-lg leading-8 text-muted">
-            Ponemos a tu disposición materiales y herramientas útiles
-            para fortalecer el bienestar, la inclusión y la defensa de
-            derechos.
-          </p>
-        </div>
+          <span
+            aria-hidden="true"
+            className="absolute right-36 -bottom-10 size-24 rounded-full bg-accent/10"
+          />
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {resources.map((resource) => (
-            <article
-              key={resource.title}
-              className="flex h-full flex-col rounded-3xl border border-border bg-surface p-6"
+          <div className="relative flex max-w-3xl items-start gap-5">
+            <span
+              aria-hidden="true"
+              className="flex size-14 shrink-0 items-center justify-center rounded-full bg-surface text-primary"
             >
-              <span
-                aria-hidden="true"
-                className={`flex size-11 items-center justify-center rounded-full ${resource.iconClassName}`}
-              >
-                <resource.Icon className="size-5" />
-              </span>
-              <h3 className="mt-5 text-lg font-bold text-foreground">
-                {resource.title}
-              </h3>
-              <p className="mt-3 grow leading-7 text-muted">
-                {resource.description}
+              <BookIcon className="size-7" />
+            </span>
+            <div>
+              <p className="text-sm font-bold tracking-[0.14em] text-primary uppercase">
+                Recursos
               </p>
-              <span className="mt-5 self-start rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-                Próximamente
-              </span>
-            </article>
-          ))}
+              <h2
+                id="community-resources-title"
+                className="mt-2 text-3xl font-bold text-foreground sm:text-4xl"
+              >
+                Información para orientar y acompañar
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-muted">
+                Consulta artículos, materiales y videos que AFAP reúne para
+                personas, familias y comunidad.
+              </p>
+            </div>
+          </div>
+
+          <LinkButton
+            href="/recursos"
+            intent="primary"
+            className="relative mt-7 w-full lg:mt-0 lg:w-auto"
+          >
+            Explorar recursos
+          </LinkButton>
         </div>
       </Container>
     </Section>
-  );
+  )
 }

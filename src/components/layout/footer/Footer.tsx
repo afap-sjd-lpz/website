@@ -5,6 +5,7 @@ import { Brand } from "@/components/layout/brand";
 import { Container } from "@/components/ui/container";
 import {
   BookIcon,
+  CommunityIcon,
   FacebookIcon,
   HomeIcon,
   LocationIcon,
@@ -22,7 +23,8 @@ const navigationIcons: Record<
 > = {
   "/": HomeIcon,
   "/quienes-somos": PeopleIcon,
-  "/comunidad": BookIcon,
+  "/comunidad": CommunityIcon,
+  "/recursos": BookIcon,
   "/contacto": MailIcon,
 };
 
@@ -76,7 +78,7 @@ export function Footer() {
                 aria-label="Enlaces del pie de página"
                 className="mt-5"
               >
-                <ul className="grid grid-cols-4 gap-2 md:flex md:flex-col md:items-start md:gap-3">
+                <ul className="grid grid-cols-3 gap-2 md:flex md:flex-col md:items-start md:gap-3">
                   {navigationItems.map((item) => {
                     const Icon = navigationIcons[item.href];
 

@@ -25,6 +25,8 @@ export { MenuIcon } from "./MenuIcon";
 export type { MenuIconProps } from "./MenuIcon";
 export { PeopleIcon } from "./PeopleIcon";
 export type { PeopleIconProps } from "./PeopleIcon";
+export { PlayIcon } from "./PlayIcon";
+export type { PlayIconProps } from "./PlayIcon";
 export { PhoneIcon } from "./PhoneIcon";
 export type { PhoneIconProps } from "./PhoneIcon";
 export { ShieldIcon } from "./ShieldIcon";

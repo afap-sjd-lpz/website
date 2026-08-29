@@ -12,7 +12,7 @@ export function DesktopNavigation() {
 
   return (
     <nav
-      className="hidden items-center gap-2 md:flex"
+      className="hidden items-center gap-1 md:flex lg:gap-2"
       aria-label="Navegación principal"
     >
       {navigationItems.map((item) => {
@@ -26,7 +26,7 @@ export function DesktopNavigation() {
             key={item.href}
             href={item.href}
             aria-current={isActive ? "page" : undefined}
-            className={`rounded-lg border-b-2 px-4 py-2 text-base transition-colors ${
+            className={`rounded-lg border-b-2 px-2.5 py-2 text-sm transition-colors lg:px-4 lg:text-base ${
               isActive
                 ? "border-primary font-semibold text-primary"
                 : "border-transparent font-medium text-foreground hover:bg-primary/10 hover:text-primary"
