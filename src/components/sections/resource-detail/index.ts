@@ -1,0 +1,5 @@
+export {RelatedResources} from './RelatedResources'
+export type {RelatedResourcesProps} from './RelatedResources'
+export {ResourceDetailInfoRow} from './ResourceDetailInfoRow'
+export type {ResourceDetailInfoRowProps} from './ResourceDetailInfoRow'
+export {formatResourceDate} from './resource-detail.utils'

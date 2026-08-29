@@ -50,7 +50,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
   const relatedResources = await client.fetch(
     RELATED_RESOURCES_QUERY,
     {
-      articleId: article._id,
+      currentId: article._id,
       topicIds: article.topics.map((topic) => topic._id),
     },
     {next: {revalidate: SANITY_REVALIDATE_SECONDS}},

@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type {ComponentType, ReactNode} from 'react'
 
+import {
+  formatResourceDate,
+  RelatedResources,
+  ResourceDetailInfoRow,
+} from '@/components/sections/resource-detail'
 import {LinkButton} from '@/components/ui/button'
 import {Container} from '@/components/ui/container'
 import {
@@ -10,7 +14,6 @@ import {
   CommunityIcon,
   HeartIcon,
   PeopleIcon,
-  type IconProps,
 } from '@/components/ui/icons'
 import {Section} from '@/components/ui/section'
 import {urlFor} from '@/sanity/lib/image'
@@ -20,43 +23,8 @@ import type {
 } from '@/sanity/sanity.types'
 
 import {ArticleBody} from './ArticleBody'
-import {RelatedResources} from './RelatedResources'
 
 type Article = NonNullable<ARTICLE_BY_SLUG_QUERY_RESULT>
-
-const dateFormatter = new Intl.DateTimeFormat('es-BO', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'UTC',
-})
-
-function formatDate(value: string) {
-  return dateFormatter.format(new Date(`${value}T00:00:00Z`))
-}
-
-interface InfoRowProps {
-  Icon: ComponentType<IconProps>
-  label: string
-  children: ReactNode
-}
-
-function InfoRow({Icon, label, children}: InfoRowProps) {
-  return (
-    <div className="flex gap-4 border-b border-border pb-5 last:border-0 last:pb-0">
-      <span
-        aria-hidden="true"
-        className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"
-      >
-        <Icon className="size-5" />
-      </span>
-      <div className="min-w-0">
-        <p className="text-sm text-muted">{label}</p>
-        <div className="mt-1 font-semibold text-foreground">{children}</div>
-      </div>
-    </div>
-  )
-}
 
 export interface ArticleDetailProps {
   article: Article
@@ -96,7 +64,7 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
                 <div className="flex items-center gap-2">
                   <CalendarIcon className="size-5 text-primary" />
                   <time dateTime={article.publishedAt}>
-                    {formatDate(article.publishedAt)}
+                    {formatResourceDate(article.publishedAt)}
                   </time>
                 </div>
               </div>
@@ -136,11 +104,11 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
               </h2>
 
               <div className="mt-7 space-y-5">
-                <InfoRow Icon={BookIcon} label="Tipo de recurso">
+                <ResourceDetailInfoRow Icon={BookIcon} label="Tipo de recurso">
                   Artículo
-                </InfoRow>
+                </ResourceDetailInfoRow>
 
-                <InfoRow Icon={CommunityIcon} label="Temáticas">
+                <ResourceDetailInfoRow Icon={CommunityIcon} label="Temáticas">
                   <ul className="flex flex-wrap gap-2">
                     {article.topics.map((topic) => (
                       <li
@@ -151,26 +119,29 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
                       </li>
                     ))}
                   </ul>
-                </InfoRow>
+                </ResourceDetailInfoRow>
 
-                <InfoRow Icon={CalendarIcon} label="Publicado">
+                <ResourceDetailInfoRow Icon={CalendarIcon} label="Publicado">
                   <time dateTime={article.publishedAt}>
-                    {formatDate(article.publishedAt)}
+                    {formatResourceDate(article.publishedAt)}
                   </time>
-                </InfoRow>
+                </ResourceDetailInfoRow>
 
                 {article.author?.trim() && (
-                  <InfoRow Icon={PeopleIcon} label="Autor">
+                  <ResourceDetailInfoRow Icon={PeopleIcon} label="Autor">
                     {article.author}
-                  </InfoRow>
+                  </ResourceDetailInfoRow>
                 )}
 
                 {article.reviewedAt && (
-                  <InfoRow Icon={CalendarIcon} label="Última revisión">
+                  <ResourceDetailInfoRow
+                    Icon={CalendarIcon}
+                    label="Última revisión"
+                  >
                     <time dateTime={article.reviewedAt}>
-                      {formatDate(article.reviewedAt)}
+                      {formatResourceDate(article.reviewedAt)}
                     </time>
-                  </InfoRow>
+                  </ResourceDetailInfoRow>
                 )}
               </div>
             </div>

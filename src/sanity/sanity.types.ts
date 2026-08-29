@@ -321,58 +321,35 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
   seo: Seo | null;
 } | null;
 
-// Source: src/sanity/queries/articles.ts
-// Variable: RELATED_RESOURCES_QUERY
-// Query: *[    _type in ["article", "material", "video"] &&    !(_id in path("drafts.**")) &&    _id != $articleId &&    count(topics[_ref in $topicIds]) > 0  ]    | order(featured desc, publishedAt desc, _id asc)[0...3] {      _id,      _type,      title,      "slug": slug.current,      publishedAt,      featured,      "topics": topics[]->{        _id,        name,        "slug": slug.current      },      _type == "article" => {        summary,        mainImage      },      _type == "material" => {        description,        cover,        source      },      _type == "video" => {        description,        videoType,        youtubeUrl      }    }
-export type RELATED_RESOURCES_QUERY_RESULT = Array<
-  | {
+// Source: src/sanity/queries/materials.ts
+// Variable: MATERIAL_BY_SLUG_QUERY
+// Query: *[    _type == "material" &&    !(_id in path("drafts.**")) &&    slug.current == $slug  ][0] {    _id,    _type,    title,    "slug": slug.current,    description,    cover,    file {      asset->{        _id,        url,        originalFilename,        mimeType      }    },    externalUrl,    source,    "topics": topics[]->{      _id,      name,      "slug": slug.current    },    publishedAt,    featured,    seo  }
+export type MATERIAL_BY_SLUG_QUERY_RESULT = {
+  _id: string;
+  _type: "material";
+  title: string;
+  slug: string;
+  description: string;
+  cover: AccessibleImage | null;
+  file: {
+    asset: {
       _id: string;
-      _type: "article";
-      title: string;
-      slug: string;
-      publishedAt: string;
-      featured: boolean | null;
-      topics: Array<{
-        _id: string;
-        name: string;
-        slug: string;
-      }>;
-      summary: string;
-      mainImage: AccessibleImage;
-    }
-  | {
-      _id: string;
-      _type: "material";
-      title: string;
-      slug: string;
-      publishedAt: string;
-      featured: boolean | null;
-      topics: Array<{
-        _id: string;
-        name: string;
-        slug: string;
-      }>;
-      description: string;
-      cover: AccessibleImage | null;
-      source: string | null;
-    }
-  | {
-      _id: string;
-      _type: "video";
-      title: string;
-      slug: string;
-      publishedAt: string;
-      featured: boolean | null;
-      topics: Array<{
-        _id: string;
-        name: string;
-        slug: string;
-      }>;
-      description: string;
-      videoType: "charla" | "otro" | "taller";
-      youtubeUrl: string;
-    }
->;
+      url: string;
+      originalFilename: string | null;
+      mimeType: string;
+    } | null;
+  } | null;
+  externalUrl: string | null;
+  source: string | null;
+  topics: Array<{
+    _id: string;
+    name: string;
+    slug: string;
+  }>;
+  publishedAt: string;
+  featured: boolean | null;
+  seo: Seo | null;
+} | null;
 
 // Source: src/sanity/queries/resources.ts
 // Variable: RESOURCES_QUERY
@@ -486,6 +463,59 @@ export type RESOURCES_OLDEST_QUERY_RESULT = {
   total: number;
 };
 
+// Source: src/sanity/queries/resources.ts
+// Variable: RELATED_RESOURCES_QUERY
+// Query: *[    _type in ["article", "material", "video"] &&    !(_id in path("drafts.**")) &&    _id != $currentId &&    count(topics[_ref in $topicIds]) > 0  ]    | order(featured desc, publishedAt desc, _id asc)[0...3] {      _id,      _type,      title,      "slug": slug.current,      publishedAt,      featured,      "topics": topics[]->{        _id,        name,        "slug": slug.current      },      _type == "article" => {        summary,        mainImage      },      _type == "material" => {        description,        cover,        source      },      _type == "video" => {        description,        videoType,        youtubeUrl      }    }
+export type RELATED_RESOURCES_QUERY_RESULT = Array<
+  | {
+      _id: string;
+      _type: "article";
+      title: string;
+      slug: string;
+      publishedAt: string;
+      featured: boolean | null;
+      topics: Array<{
+        _id: string;
+        name: string;
+        slug: string;
+      }>;
+      summary: string;
+      mainImage: AccessibleImage;
+    }
+  | {
+      _id: string;
+      _type: "material";
+      title: string;
+      slug: string;
+      publishedAt: string;
+      featured: boolean | null;
+      topics: Array<{
+        _id: string;
+        name: string;
+        slug: string;
+      }>;
+      description: string;
+      cover: AccessibleImage | null;
+      source: string | null;
+    }
+  | {
+      _id: string;
+      _type: "video";
+      title: string;
+      slug: string;
+      publishedAt: string;
+      featured: boolean | null;
+      topics: Array<{
+        _id: string;
+        name: string;
+        slug: string;
+      }>;
+      description: string;
+      videoType: "charla" | "otro" | "taller";
+      youtubeUrl: string;
+    }
+>;
+
 // Source: src/sanity/queries/topics.ts
 // Variable: TOPICS_QUERY
 // Query: *[    _type == "topic" &&    !(_id in path("drafts.**"))  ] | order(order asc, name asc) {    _id,    name,    "slug": slug.current,    description,    order  }
@@ -502,9 +532,10 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[\n    _type == "article" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    summary,\n    mainImage,\n    content,\n    "topics": topics[]->{\n      _id,\n      name,\n      "slug": slug.current\n    },\n    publishedAt,\n    reviewedAt,\n    author,\n    featured,\n    seo\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
-    '\n  *[\n    _type in ["article", "material", "video"] &&\n    !(_id in path("drafts.**")) &&\n    _id != $articleId &&\n    count(topics[_ref in $topicIds]) > 0\n  ]\n    | order(featured desc, publishedAt desc, _id asc)[0...3] {\n      _id,\n      _type,\n      title,\n      "slug": slug.current,\n      publishedAt,\n      featured,\n      "topics": topics[]->{\n        _id,\n        name,\n        "slug": slug.current\n      },\n      _type == "article" => {\n        summary,\n        mainImage\n      },\n      _type == "material" => {\n        description,\n        cover,\n        source\n      },\n      _type == "video" => {\n        description,\n        videoType,\n        youtubeUrl\n      }\n    }\n': RELATED_RESOURCES_QUERY_RESULT;
+    '\n  *[\n    _type == "material" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    description,\n    cover,\n    file {\n      asset->{\n        _id,\n        url,\n        originalFilename,\n        mimeType\n      }\n    },\n    externalUrl,\n    source,\n    "topics": topics[]->{\n      _id,\n      name,\n      "slug": slug.current\n    },\n    publishedAt,\n    featured,\n    seo\n  }\n': MATERIAL_BY_SLUG_QUERY_RESULT;
     '\n  {\n    "items": *[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ]\n      | order(featured desc, publishedAt desc, _id asc)[$start...$end] {\n        _id,\n        _type,\n        title,\n        "slug": slug.current,\n        publishedAt,\n        featured,\n        "topics": topics[]->{\n          _id,\n          name,\n          "slug": slug.current\n        },\n        _type == "article" => {\n          summary,\n          mainImage\n        },\n        _type == "material" => {\n          description,\n          cover,\n          source\n        },\n        _type == "video" => {\n          description,\n          videoType,\n          youtubeUrl\n        }\n      },\n    "total": count(*[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ])\n  }\n': RESOURCES_QUERY_RESULT;
     '\n  {\n    "items": *[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ]\n      | order(featured desc, publishedAt asc, _id asc)[$start...$end] {\n        _id,\n        _type,\n        title,\n        "slug": slug.current,\n        publishedAt,\n        featured,\n        "topics": topics[]->{\n          _id,\n          name,\n          "slug": slug.current\n        },\n        _type == "article" => {\n          summary,\n          mainImage\n        },\n        _type == "material" => {\n          description,\n          cover,\n          source\n        },\n        _type == "video" => {\n          description,\n          videoType,\n          youtubeUrl\n        }\n      },\n    "total": count(*[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ])\n  }\n': RESOURCES_OLDEST_QUERY_RESULT;
+    '\n  *[\n    _type in ["article", "material", "video"] &&\n    !(_id in path("drafts.**")) &&\n    _id != $currentId &&\n    count(topics[_ref in $topicIds]) > 0\n  ]\n    | order(featured desc, publishedAt desc, _id asc)[0...3] {\n      _id,\n      _type,\n      title,\n      "slug": slug.current,\n      publishedAt,\n      featured,\n      "topics": topics[]->{\n        _id,\n        name,\n        "slug": slug.current\n      },\n      _type == "article" => {\n        summary,\n        mainImage\n      },\n      _type == "material" => {\n        description,\n        cover,\n        source\n      },\n      _type == "video" => {\n        description,\n        videoType,\n        youtubeUrl\n      }\n    }\n': RELATED_RESOURCES_QUERY_RESULT;
     '\n  *[\n    _type == "topic" &&\n    !(_id in path("drafts.**"))\n  ] | order(order asc, name asc) {\n    _id,\n    name,\n    "slug": slug.current,\n    description,\n    order\n  }\n': TOPICS_QUERY_RESULT;
   }
 }

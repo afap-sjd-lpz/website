@@ -49,22 +49,26 @@ function PlayIndicator({className = ''}: {className?: string}) {
   )
 }
 
+export function MaterialFallback() {
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 overflow-hidden bg-accent/10 text-accent"
+    >
+      <span className="absolute -top-8 -right-5 size-28 rounded-full bg-primary/10" />
+      <span className="absolute -bottom-12 -left-8 size-32 rounded-full bg-secondary/15" />
+      <span className="absolute inset-0 flex items-center justify-center">
+        <span className="flex size-20 items-center justify-center rounded-2xl bg-surface/90 shadow-sm">
+          <BookIcon className="size-10" />
+        </span>
+      </span>
+    </div>
+  )
+}
+
 function ResourceImageFallback({type}: {type: ResourceCardData['_type']}) {
   if (type === 'material') {
-    return (
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 overflow-hidden bg-accent/10 text-accent"
-      >
-        <span className="absolute -top-8 -right-5 size-28 rounded-full bg-primary/10" />
-        <span className="absolute -bottom-12 -left-8 size-32 rounded-full bg-secondary/15" />
-        <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex size-20 items-center justify-center rounded-2xl bg-surface/90 shadow-sm">
-            <BookIcon className="size-10" />
-          </span>
-        </span>
-      </div>
-    )
+    return <MaterialFallback />
   }
 
   if (type === 'video') {
@@ -162,6 +166,12 @@ export function ResourceMedia({resource}: ResourceCardProps) {
 export function ResourceCard({resource}: ResourceCardProps) {
   const description =
     resource._type === 'article' ? resource.summary : resource.description
+  const href =
+    resource._type === 'article'
+      ? `/recursos/articulos/${resource.slug}`
+      : resource._type === 'material'
+        ? `/recursos/materiales/${resource.slug}`
+        : null
 
   return (
     <article className="relative flex min-w-0 flex-col overflow-hidden rounded-3xl border border-border bg-surface">
@@ -175,9 +185,9 @@ export function ResourceCard({resource}: ResourceCardProps) {
         )}
 
         <h2 className="line-clamp-2 text-lg leading-6 font-bold text-foreground">
-          {resource._type === 'article' ? (
+          {href ? (
             <Link
-              href={`/recursos/articulos/${resource.slug}`}
+              href={href}
               className="transition-colors after:absolute after:inset-0 hover:text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {resource.title}
