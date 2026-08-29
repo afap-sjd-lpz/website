@@ -6,6 +6,7 @@ import {
   formatResourceDate,
   RelatedResources,
   ResourceDetailInfoRow,
+  ResourceOrientationCard,
 } from '@/components/sections/resource-detail'
 import {LinkButton} from '@/components/ui/button'
 import {Container} from '@/components/ui/container'
@@ -84,77 +85,81 @@ export function MaterialDetail({
             )}
           </article>
 
-          <aside
-            aria-labelledby="material-info-title"
-            className="rounded-3xl border border-border bg-surface p-6 lg:sticky lg:top-6"
-          >
-            <h2
-              id="material-info-title"
-              className="text-2xl font-bold text-primary"
+          <aside className="space-y-5 lg:sticky lg:top-6">
+            <div
+              aria-labelledby="material-info-title"
+              className="rounded-3xl border border-border bg-surface p-6"
             >
-              Información del material
-            </h2>
+              <h2
+                id="material-info-title"
+                className="text-2xl font-bold text-primary"
+              >
+                Información del material
+              </h2>
 
-            <div className="mt-7 space-y-5">
-              <ResourceDetailInfoRow Icon={BookIcon} label="Tipo de recurso">
-                Material
-              </ResourceDetailInfoRow>
-
-              <ResourceDetailInfoRow Icon={CommunityIcon} label="Temáticas">
-                <ul className="flex flex-wrap gap-2">
-                  {material.topics.map((topic) => (
-                    <li
-                      key={topic._id}
-                      className="rounded-full bg-secondary/10 px-3 py-1 text-xs"
-                    >
-                      {topic.name}
-                    </li>
-                  ))}
-                </ul>
-              </ResourceDetailInfoRow>
-
-              <ResourceDetailInfoRow Icon={CalendarIcon} label="Publicado">
-                <time dateTime={material.publishedAt}>
-                  {formatResourceDate(material.publishedAt)}
-                </time>
-              </ResourceDetailInfoRow>
-
-              {source && (
-                <ResourceDetailInfoRow Icon={PeopleIcon} label="Fuente">
-                  {source}
+              <div className="mt-7 space-y-5">
+                <ResourceDetailInfoRow Icon={BookIcon} label="Tipo de recurso">
+                  Material
                 </ResourceDetailInfoRow>
+
+                <ResourceDetailInfoRow Icon={CommunityIcon} label="Temáticas">
+                  <ul className="flex flex-wrap gap-2">
+                    {material.topics.map((topic) => (
+                      <li
+                        key={topic._id}
+                        className="rounded-full bg-secondary/10 px-3 py-1 text-xs"
+                      >
+                        {topic.name}
+                      </li>
+                    ))}
+                  </ul>
+                </ResourceDetailInfoRow>
+
+                <ResourceDetailInfoRow Icon={CalendarIcon} label="Publicado">
+                  <time dateTime={material.publishedAt}>
+                    {formatResourceDate(material.publishedAt)}
+                  </time>
+                </ResourceDetailInfoRow>
+
+                {source && (
+                  <ResourceDetailInfoRow Icon={PeopleIcon} label="Fuente">
+                    {source}
+                  </ResourceDetailInfoRow>
+                )}
+              </div>
+
+              {(pdfUrl || material.externalUrl) && (
+                <div className="mt-7 space-y-3 border-t border-border pt-6">
+                  {pdfUrl && (
+                    <LinkButton
+                      href={pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      intent="primary"
+                      aria-label={`Abrir ${material.title} en una pestaña nueva`}
+                      className="w-full justify-center"
+                    >
+                      Abrir material
+                    </LinkButton>
+                  )}
+
+                  {material.externalUrl && (
+                    <LinkButton
+                      href={material.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      intent={pdfUrl ? 'outline' : 'primary'}
+                      aria-label={`${pdfUrl ? 'Visitar fuente externa' : 'Visitar recurso'} en una pestaña nueva`}
+                      className="w-full justify-center"
+                    >
+                      {pdfUrl ? 'Visitar fuente externa' : 'Visitar recurso'}
+                    </LinkButton>
+                  )}
+                </div>
               )}
             </div>
 
-            {(pdfUrl || material.externalUrl) && (
-              <div className="mt-7 space-y-3 border-t border-border pt-6">
-                {pdfUrl && (
-                  <LinkButton
-                    href={pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    intent="primary"
-                    aria-label={`Abrir ${material.title} en una pestaña nueva`}
-                    className="w-full justify-center"
-                  >
-                    Abrir material
-                  </LinkButton>
-                )}
-
-                {material.externalUrl && (
-                  <LinkButton
-                    href={material.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    intent={pdfUrl ? 'outline' : 'primary'}
-                    aria-label={`${pdfUrl ? 'Visitar fuente externa' : 'Visitar recurso'} en una pestaña nueva`}
-                    className="w-full justify-center"
-                  >
-                    {pdfUrl ? 'Visitar fuente externa' : 'Visitar recurso'}
-                  </LinkButton>
-                )}
-              </div>
-            )}
+            <ResourceOrientationCard />
           </aside>
         </div>
 

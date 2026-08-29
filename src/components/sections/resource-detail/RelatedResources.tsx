@@ -4,22 +4,10 @@ import {ResourceMedia} from '@/components/sections/resource-library/ResourceCard
 import {BookIcon} from '@/components/ui/icons'
 import type {RELATED_RESOURCES_QUERY_RESULT} from '@/sanity/sanity.types'
 
+import {getResourceDetailHref} from './resource-detail.utils'
+
 export interface RelatedResourcesProps {
   resources: RELATED_RESOURCES_QUERY_RESULT
-}
-
-function getResourceHref(
-  resource: RELATED_RESOURCES_QUERY_RESULT[number],
-) {
-  if (resource._type === 'article') {
-    return `/recursos/articulos/${resource.slug}`
-  }
-
-  if (resource._type === 'material') {
-    return `/recursos/materiales/${resource.slug}`
-  }
-
-  return null
 }
 
 export function RelatedResources({resources}: RelatedResourcesProps) {
@@ -42,7 +30,7 @@ export function RelatedResources({resources}: RelatedResourcesProps) {
 
       <div className="mt-6 grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {resources.map((resource) => {
-          const href = getResourceHref(resource)
+          const href = getResourceDetailHref(resource)
 
           return (
             <article
@@ -52,16 +40,12 @@ export function RelatedResources({resources}: RelatedResourcesProps) {
               <ResourceMedia resource={resource} />
               <div className="p-4">
                 <h3 className="line-clamp-2 font-bold leading-6 text-foreground">
-                  {href ? (
-                    <Link
-                      href={href}
-                      className="transition-colors after:absolute after:inset-0 hover:text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                    >
-                      {resource.title}
-                    </Link>
-                  ) : (
-                    resource.title
-                  )}
+                  <Link
+                    href={href}
+                    className="transition-colors after:absolute after:inset-0 hover:text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  >
+                    {resource.title}
+                  </Link>
                 </h3>
 
                 {resource.topics[0] && (

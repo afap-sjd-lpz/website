@@ -11,3 +11,4 @@ export type {
   ResourceType,
 } from './resources'
 export {TOPICS_QUERY} from './topics'
+export {VIDEO_BY_SLUG_QUERY} from './videos'

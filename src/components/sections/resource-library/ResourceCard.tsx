@@ -1,6 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import {getResourceDetailHref} from '@/components/sections/resource-detail/resource-detail.utils'
+import {
+  getYouTubeThumbnailUrl,
+  getYouTubeVideoId,
+} from '@/components/sections/resource-detail/youtube.utils'
 import {
   BookIcon,
   CalendarIcon,
@@ -9,11 +14,6 @@ import {
 } from '@/components/ui/icons'
 import {urlFor} from '@/sanity/lib/image'
 import type {RESOURCES_QUERY_RESULT} from '@/sanity/sanity.types'
-
-import {
-  getYouTubeThumbnailUrl,
-  getYouTubeVideoId,
-} from './youtube.utils'
 
 type ResourceCardData = RESOURCES_QUERY_RESULT['items'][number]
 
@@ -72,17 +72,7 @@ function ResourceImageFallback({type}: {type: ResourceCardData['_type']}) {
   }
 
   if (type === 'video') {
-    return (
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center overflow-hidden bg-primary/10 text-primary"
-      >
-        <span className="absolute -top-10 -left-8 size-32 rounded-full bg-secondary/15" />
-        <span className="absolute right-8 bottom-7 size-3 rounded-full bg-accent/30" />
-        <span className="absolute right-14 bottom-12 size-2 rounded-full bg-primary/40" />
-        <PlayIcon className="size-16 drop-shadow-sm" />
-      </div>
-    )
+    return <VideoFallback />
   }
 
   return (
@@ -93,6 +83,20 @@ function ResourceImageFallback({type}: {type: ResourceCardData['_type']}) {
       <span className="flex size-16 items-center justify-center rounded-full bg-surface/80">
         <HeartIcon className="size-8" />
       </span>
+    </div>
+  )
+}
+
+export function VideoFallback() {
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 flex items-center justify-center overflow-hidden bg-primary/10 text-primary"
+    >
+      <span className="absolute -top-10 -left-8 size-32 rounded-full bg-secondary/15" />
+      <span className="absolute right-8 bottom-7 size-3 rounded-full bg-accent/30" />
+      <span className="absolute right-14 bottom-12 size-2 rounded-full bg-primary/40" />
+      <PlayIcon className="size-16 drop-shadow-sm" />
     </div>
   )
 }
@@ -166,12 +170,7 @@ export function ResourceMedia({resource}: ResourceCardProps) {
 export function ResourceCard({resource}: ResourceCardProps) {
   const description =
     resource._type === 'article' ? resource.summary : resource.description
-  const href =
-    resource._type === 'article'
-      ? `/recursos/articulos/${resource.slug}`
-      : resource._type === 'material'
-        ? `/recursos/materiales/${resource.slug}`
-        : null
+  const href = getResourceDetailHref(resource)
 
   return (
     <article className="relative flex min-w-0 flex-col overflow-hidden rounded-3xl border border-border bg-surface">
@@ -185,16 +184,12 @@ export function ResourceCard({resource}: ResourceCardProps) {
         )}
 
         <h2 className="line-clamp-2 text-lg leading-6 font-bold text-foreground">
-          {href ? (
-            <Link
-              href={href}
-              className="transition-colors after:absolute after:inset-0 hover:text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            >
-              {resource.title}
-            </Link>
-          ) : (
-            resource.title
-          )}
+          <Link
+            href={href}
+            className="transition-colors after:absolute after:inset-0 hover:text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {resource.title}
+          </Link>
         </h2>
         <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">
           {description}
