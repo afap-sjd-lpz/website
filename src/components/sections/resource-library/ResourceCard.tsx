@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import {
   BookIcon,
@@ -92,7 +93,7 @@ function ResourceImageFallback({type}: {type: ResourceCardData['_type']}) {
   )
 }
 
-export function ResourceCard({resource}: ResourceCardProps) {
+export function ResourceMedia({resource}: ResourceCardProps) {
   const image =
     resource._type === 'article'
       ? resource.mainImage
@@ -104,8 +105,6 @@ export function ResourceCard({resource}: ResourceCardProps) {
     resource._type === 'video'
       ? getYouTubeVideoId(resource.youtubeUrl)
       : null
-  const description =
-    resource._type === 'article' ? resource.summary : resource.description
   const label =
     resource._type === 'article'
       ? 'Artículo'
@@ -120,44 +119,53 @@ export function ResourceCard({resource}: ResourceCardProps) {
         : 'bg-primary text-foreground'
 
   return (
-    <article className="flex min-w-0 flex-col overflow-hidden rounded-3xl border border-border bg-surface">
-      <div className="relative aspect-[16/10] overflow-hidden bg-primary/10">
-        {youtubeVideoId ? (
-          <>
-            <Image
-              src={getYouTubeThumbnailUrl(youtubeVideoId)}
-              alt=""
-              fill
-              sizes="(min-width: 1280px) 280px, (min-width: 640px) 42vw, calc(100vw - 2rem)"
-              className="object-cover"
-            />
-            <span className="absolute inset-0 flex items-center justify-center bg-foreground/10 text-foreground">
-              <PlayIndicator />
-            </span>
-          </>
-        ) : hasImage && image ? (
+    <div className="relative aspect-[16/10] overflow-hidden bg-primary/10">
+      {youtubeVideoId ? (
+        <>
           <Image
-            src={urlFor(image.image)
-              .width(720)
-              .height(450)
-              .fit('crop')
-              .auto('format')
-              .url()}
-            alt={image.alt}
+            src={getYouTubeThumbnailUrl(youtubeVideoId)}
+            alt=""
             fill
             sizes="(min-width: 1280px) 280px, (min-width: 640px) 42vw, calc(100vw - 2rem)"
             className="object-cover"
           />
-        ) : (
-          <ResourceImageFallback type={resource._type} />
-        )}
+          <span className="absolute inset-0 flex items-center justify-center bg-foreground/10 text-foreground">
+            <PlayIndicator />
+          </span>
+        </>
+      ) : hasImage && image ? (
+        <Image
+          src={urlFor(image.image)
+            .width(720)
+            .height(450)
+            .fit('crop')
+            .auto('format')
+            .url()}
+          alt={image.alt}
+          fill
+          sizes="(min-width: 1280px) 280px, (min-width: 640px) 42vw, calc(100vw - 2rem)"
+          className="object-cover"
+        />
+      ) : (
+        <ResourceImageFallback type={resource._type} />
+      )}
 
-        <span
-          className={`absolute top-3 left-3 rounded-full px-3 py-1 text-xs font-bold tracking-wide uppercase ${badgeClassName}`}
-        >
-          {label}
-        </span>
-      </div>
+      <span
+        className={`absolute top-3 left-3 rounded-full px-3 py-1 text-xs font-bold tracking-wide uppercase ${badgeClassName}`}
+      >
+        {label}
+      </span>
+    </div>
+  )
+}
+
+export function ResourceCard({resource}: ResourceCardProps) {
+  const description =
+    resource._type === 'article' ? resource.summary : resource.description
+
+  return (
+    <article className="relative flex min-w-0 flex-col overflow-hidden rounded-3xl border border-border bg-surface">
+      <ResourceMedia resource={resource} />
 
       <div className="flex grow flex-col p-5">
         {resource._type === 'video' && videoTypeLabels[resource.videoType] && (
@@ -167,7 +175,16 @@ export function ResourceCard({resource}: ResourceCardProps) {
         )}
 
         <h2 className="line-clamp-2 text-lg leading-6 font-bold text-foreground">
-          {resource.title}
+          {resource._type === 'article' ? (
+            <Link
+              href={`/recursos/articulos/${resource.slug}`}
+              className="transition-colors after:absolute after:inset-0 hover:text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              {resource.title}
+            </Link>
+          ) : (
+            resource.title
+          )}
         </h2>
         <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">
           {description}

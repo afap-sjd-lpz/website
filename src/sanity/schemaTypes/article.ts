@@ -87,6 +87,18 @@ export const articleType = defineType({
     }),
 
     defineField({
+      name: "author",
+      title: "Autor",
+      type: "string",
+      validation: (rule) =>
+        rule.custom((author) =>
+          author === undefined || author.trim().length > 0
+            ? true
+            : "El autor no puede contener únicamente espacios.",
+        ),
+    }),
+
+    defineField({
       name: "featured",
       title: "Destacado",
       type: "boolean",

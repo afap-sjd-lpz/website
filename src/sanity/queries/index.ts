@@ -1,4 +1,7 @@
-export {ARTICLE_BY_SLUG_QUERY} from './articles'
+export {
+  ARTICLE_BY_SLUG_QUERY,
+  RELATED_RESOURCES_QUERY,
+} from './articles'
 export {
   RESOURCES_OLDEST_QUERY,
   RESOURCES_QUERY,
