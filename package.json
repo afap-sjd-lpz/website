@@ -6,11 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:schema": "sanity schema extract --enforce-required-fields --path src/sanity/schema.json",
+    "sanity:typegen": "pnpm sanity:schema && sanity typegen generate"
   },
   "dependencies": {
     "@heroui/react": "^3.2.3",
     "@heroui/styles": "^3.2.3",
+    "@sanity/client": "7.26.2",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.31.2",
     "@vercel/firewall": "1.2.2",
