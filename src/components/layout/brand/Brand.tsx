@@ -35,8 +35,8 @@ export function Brand({
             AFAP
           </span>
 
-          <span className="text-sm text-muted">
-            San Juan de Dios - La Paz
+          <span className="max-w-48 text-xs text-muted sm:max-w-none sm:text-sm">
+            Unidos por la salud mental
           </span>
         </div>
       )}

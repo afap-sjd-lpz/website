@@ -5,6 +5,7 @@ import { Brand } from "@/components/layout/brand";
 import { Container } from "@/components/ui/container";
 import {
   BookIcon,
+  CommunityIcon,
   FacebookIcon,
   HomeIcon,
   LocationIcon,
@@ -22,6 +23,7 @@ const navigationIcons: Record<
 > = {
   "/": HomeIcon,
   "/quienes-somos": PeopleIcon,
+  "/comunidad": CommunityIcon,
   "/recursos": BookIcon,
   "/contacto": MailIcon,
 };
@@ -76,7 +78,7 @@ export function Footer() {
                 aria-label="Enlaces del pie de página"
                 className="mt-5"
               >
-                <ul className="grid grid-cols-4 gap-2 md:flex md:flex-col md:items-start md:gap-3">
+                <ul className="grid grid-cols-3 gap-2 md:flex md:flex-col md:items-start md:gap-3">
                   {navigationItems.map((item) => {
                     const Icon = navigationIcons[item.href];
 
@@ -144,7 +146,7 @@ export function Footer() {
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-4 border-t border-primary/25 pt-6 text-center text-sm text-muted sm:flex-row sm:justify-between sm:text-start">
-            <p>© 2026 AFAP San Juan de Dios - La Paz</p>
+            <p>© 2026 AFAP</p>
 
             <Link
               href="/politica-de-privacidad"

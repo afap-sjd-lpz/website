@@ -1,8 +1,5 @@
-import type { Metadata } from "next";
-import { Nunito_Sans } from "next/font/google";
-
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import type {Metadata} from "next";
+import {Nunito_Sans} from "next/font/google";
 
 import "./globals.css";
 
@@ -13,9 +10,9 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "AFAP San Juan de Dios - La Paz",
+  title: "AFAP | Unidos por la salud mental",
   description:
-    "Asociación de Familiares y Amigos de Pacientes con Discapacidad Mental y/o Psíquica de San Juan de Dios - La Paz.",
+    "AFAP une a familias, amigos y personas comprometidas con la salud mental, la inclusión y la defensa de derechos en Bolivia.",
 };
 
 export default function RootLayout({
@@ -23,11 +20,7 @@ export default function RootLayout({
 }: LayoutProps<"/">) {
   return (
     <html lang="es" className={nunitoSans.variable}>
-      <body className="flex min-h-screen flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

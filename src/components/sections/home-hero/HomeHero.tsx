@@ -11,23 +11,21 @@ export function HomeHero() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <p className="mb-4 text-sm font-bold tracking-[0.16em] text-primary">
-              APOYO · ORIENTACIÓN · COMUNIDAD
+              APOYO · ORIENTACIÓN · DERECHOS
             </p>
 
             <h1
               id="home-hero-title"
               className="max-w-3xl text-4xl leading-tight font-bold text-foreground sm:text-5xl"
             >
-              Acompañamos a familias, con{" "}
-              <span className="text-primary">
-                empatía y esperanza
-              </span>
+              Unidos por la salud mental en Bolivia
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl sm:leading-9">
-              Brindamos orientación, acompañamiento y un espacio de
-              comunidad para personas y familias vinculadas a la
-              salud mental.
+              En AFAP, familias, amigos y personas comprometidas con
+              la salud mental nos unimos para orientarnos, apoyarnos,
+              defender derechos y contribuir a una sociedad más
+              informada e inclusiva.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -36,7 +34,7 @@ export function HomeHero() {
                 intent="primary"
                 className="min-h-11 w-full px-5 text-base sm:w-auto"
               >
-                Conoce nuestra asociación
+                Conoce AFAP
               </LinkButton>
 
               <LinkButton
@@ -44,7 +42,7 @@ export function HomeHero() {
                 intent="outline"
                 className="min-h-11 w-full px-5 text-base sm:w-auto"
               >
-                Escríbenos
+                Contáctanos
               </LinkButton>
             </div>
           </div>

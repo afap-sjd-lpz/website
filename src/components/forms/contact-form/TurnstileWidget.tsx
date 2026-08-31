@@ -156,7 +156,13 @@ export const TurnstileWidget = forwardRef<
     return () => {
       const widgetId = widgetIdRef.current;
 
-      if (widgetId && window.turnstile) {
+      if (!widgetId) {
+        return;
+      }
+
+      widgetIdRef.current = undefined;
+
+      if (window.turnstile) {
         window.turnstile.remove(widgetId);
       }
     };

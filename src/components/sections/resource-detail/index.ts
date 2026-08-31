@@ -1,0 +1,13 @@
+export {RelatedResources} from './RelatedResources'
+export type {RelatedResourcesProps} from './RelatedResources'
+export {ResourceDetailInfoRow} from './ResourceDetailInfoRow'
+export type {ResourceDetailInfoRowProps} from './ResourceDetailInfoRow'
+export {ResourceOrientationCard} from './ResourceOrientationCard'
+export {
+  formatResourceDate,
+  getResourceDetailHref,
+} from './resource-detail.utils'
+export {
+  getYouTubeThumbnailUrl,
+  getYouTubeVideoId,
+} from './youtube.utils'

@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
               Política de Privacidad
             </h1>
             <p className="mt-4 text-sm font-semibold text-muted sm:text-base">
-              Última actualización: 9 de agosto de 2026
+              Última actualización: 31 de agosto de 2026
             </p>
           </div>
         </header>
@@ -110,10 +110,14 @@ export default function PrivacyPolicyPage() {
                 </li>
               </ul>
               <p>
-                El sitio también podrá procesar posteriormente
-                determinados datos técnicos estrictamente necesarios
-                para proteger el formulario frente a spam, bots, abuso o
-                problemas de seguridad.
+                El sitio también puede procesar determinados datos y
+                señales técnicas necesarios para su funcionamiento,
+                seguridad, prevención de spam y detección de tráfico
+                automatizado. Cloudflare Turnstile procesa señales
+                técnicas para distinguir el tráfico humano del
+                automatizado; esta verificación no requiere que
+                Cloudflare reciba el contenido del mensaje enviado a
+                AFAP.
               </p>
               <p>
                 No solicitamos mediante este formulario contraseñas,
@@ -191,7 +195,7 @@ export default function PrivacyPolicyPage() {
 
             <PolicySection title="5. Consentimiento">
               <p>
-                Antes de enviar el formulario se solicitará aceptar
+                Antes de enviar el formulario se solicita aceptar
                 expresamente esta Política de Privacidad.
               </p>
               <p>
@@ -224,12 +228,19 @@ export default function PrivacyPolicyPage() {
                 personales obtenidos mediante el formulario.
               </p>
               <p>
-                Determinados proveedores tecnológicos podrán procesar
-                técnicamente información cuando sea necesario para el
-                funcionamiento, alojamiento, seguridad o envío de
-                comunicaciones del sitio web. Cuando estos servicios
-                estén definitivamente implementados, serán identificados
-                en esta política.
+                Determinados proveedores tecnológicos intervienen cuando
+                resulta necesario para el alojamiento, entrega de
+                contenido, seguridad, protección frente a abuso o envío
+                de comunicaciones del sitio web.
+              </p>
+              <p>
+                En el formulario, Vercel proporciona la infraestructura
+                y el control de frecuencia de solicitudes, Cloudflare
+                Turnstile realiza la verificación anti-spam y Resend
+                procesa el correo generado por la consulta. Sanity,
+                Google Calendar y YouTube sirven o muestran contenido del
+                sitio, pero no reciben automáticamente los mensajes del
+                formulario.
               </p>
             </PolicySection>
 
@@ -275,26 +286,46 @@ export default function PrivacyPolicyPage() {
 
             <PolicySection title="9. Servicios tecnológicos de terceros">
               <p>
-                Para operar el sitio web podrán utilizarse proveedores
-                externos para funciones como:
+                Para operar el sitio web utilizamos los siguientes
+                servicios tecnológicos externos:
               </p>
-              <ul className={listClassName}>
-                <li>alojamiento del sitio;</li>
-                <li>envío de mensajes por correo electrónico;</li>
+              <ul className="grid gap-5">
                 <li>
-                  protección del formulario frente a bots y spam.
+                  <strong>Vercel:</strong> alojamiento, entrega del sitio
+                  e infraestructura técnica, incluida la protección por
+                  límite de solicitudes.
+                </li>
+                <li>
+                  <strong>Cloudflare Turnstile:</strong> protección del
+                  formulario frente a bots, spam y abuso mediante el
+                  procesamiento de señales técnicas necesarias para esa
+                  función.
+                </li>
+                <li>
+                  <strong>Resend:</strong> procesamiento y envío de los
+                  correos generados por el formulario de contacto.
+                </li>
+                <li>
+                  <strong>Sanity:</strong> gestión y entrega del contenido
+                  editorial público y de los recursos del sitio.
+                </li>
+                <li>
+                  <strong>Google Calendar:</strong> presentación de las
+                  actividades públicas mediante un calendario embebido.
+                </li>
+                <li>
+                  <strong>YouTube:</strong> reproducción de videos
+                  embebidos mediante el dominio youtube-nocookie.com, en
+                  modo de privacidad mejorada.
                 </li>
               </ul>
               <p>
-                Estos proveedores podrán procesar determinada información
-                técnica únicamente en la medida necesaria para prestar
-                sus servicios.
-              </p>
-              <p>
-                Esta sección se actualizará antes de la publicación
-                definitiva del formulario para identificar los servicios
-                que efectivamente utilice el sitio y enlazar, cuando
-                corresponda, a sus políticas de privacidad.
+                Al cargar o interactuar con contenido o servicios
+                embebidos, el proveedor correspondiente puede procesar
+                información técnica conforme a sus propias políticas y
+                en la medida necesaria para prestar el servicio. El uso
+                del modo de privacidad mejorada de YouTube no implica que
+                no exista ningún tratamiento de datos.
               </p>
             </PolicySection>
 
