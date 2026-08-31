@@ -22,11 +22,11 @@ export function HomeStory() {
               Una comunidad que crece en Bolivia
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted">
-              AFAP nació en La Paz a partir de la unión de familiares
-              vinculados al Instituto Psiquiátrico San Juan de Dios. Con
-              el tiempo, la asociación fue creciendo y hoy cuenta con
-              filiales y participación en otros departamentos del país,
-              fortaleciendo progresivamente su alcance nacional.
+              AFAP nació en La Paz a partir de la unión de familiares vinculados
+              al Centro de Rehabilitación y Salud Mental San Juan de Dios. Con
+              el tiempo, la asociación fue creciendo y hoy cuenta con filiales y
+              participación en otros departamentos del país, fortaleciendo
+              progresivamente su alcance nacional.
             </p>
             <LinkButton
               href="/quienes-somos"
