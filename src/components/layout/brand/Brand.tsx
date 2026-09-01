@@ -21,10 +21,10 @@ export function Brand({
       className="inline-flex items-center gap-3"
     >
       <Image
-        src="/images/LOGO_AFAP.png"
+        src="/images/logo-afap.svg"
         alt=""
-        width={253}
-        height={244}
+        width={500}
+        height={500}
         priority={imagePriority}
         className="h-14 w-auto shrink-0 object-contain"
       />
