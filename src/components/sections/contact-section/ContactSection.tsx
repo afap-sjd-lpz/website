@@ -8,16 +8,36 @@ import {
   WhatsAppIcon,
 } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
-import { contactConfig } from "@/config/contact.config";
+import {
+  createPhoneHref,
+  createWhatsappUrl,
+  getPrimaryWhatsapp,
+  type ContactSettingsData,
+} from "@/sanity/lib/institutional";
 
-export function ContactSection() {
+interface ContactSectionProps {
+  contactSettings: ContactSettingsData;
+}
+
+export function ContactSection({ contactSettings }: ContactSectionProps) {
+  const phones = contactSettings?.phones ?? [];
+  const emails = contactSettings?.emails ?? [];
+  const primaryWhatsapp = getPrimaryWhatsapp(contactSettings);
+  const whatsappUrl = primaryWhatsapp
+    ? createWhatsappUrl(primaryWhatsapp.number)
+    : undefined;
+  const hasContactInfo = Boolean(
+    contactSettings?.location || phones.length || emails.length,
+  );
+  const hasSidebar = hasContactInfo || whatsappUrl;
+
   return (
     <Section
       aria-labelledby="contact-form-title"
       className="pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-8 lg:pb-8"
     >
       <Container>
-        <div className="grid items-start gap-8 lg:grid-cols-[2fr_1fr] lg:items-stretch">
+        <div className={`grid items-start gap-8 ${hasSidebar ? "lg:grid-cols-[2fr_1fr] lg:items-stretch" : ""}`}>
           <div className="rounded-3xl border border-border bg-surface p-6 shadow-sm sm:p-8">
             <h2
               id="contact-form-title"
@@ -39,8 +59,8 @@ export function ContactSection() {
             <ContactForm />
           </div>
 
-          <div className="grid gap-6 lg:grid-rows-[auto_1fr]">
-            <aside
+          {hasSidebar ? <div className="grid gap-6 lg:grid-rows-[auto_1fr]">
+            {hasContactInfo ? <aside
               aria-labelledby="contact-info-title"
               className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 p-6 sm:p-8"
             >
@@ -58,7 +78,7 @@ export function ContactSection() {
               />
 
               <address className="mt-8 divide-y divide-border/60 not-italic">
-                <div className="flex items-center gap-4 pb-5">
+                {contactSettings?.location ? <div className="flex items-center gap-4 pb-5">
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                     <LocationIcon className="size-6" />
                   </span>
@@ -68,47 +88,87 @@ export function ContactSection() {
                       Ubicación
                     </span>
                     <span className="mt-1 block font-semibold text-foreground">
-                      {contactConfig.location}
+                      {contactSettings.location}
                     </span>
                   </p>
-                </div>
+                </div> : null}
 
-                <a
-                  href={`mailto:${contactConfig.email}`}
-                  className="flex items-center gap-4 py-5 transition-colors hover:text-primary"
-                >
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                    <MailIcon className="size-6" />
-                  </span>
+                {emails.map((email) => (
+                  <a
+                    key={`${email.purpose}-${email.email}`}
+                    href={`mailto:${email.email}`}
+                    className="flex items-center gap-4 py-5 transition-colors hover:text-primary"
+                  >
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                      <MailIcon className="size-6" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-sm text-muted">{email.label}</span>
+                      <span className="mt-1 block break-all font-semibold text-foreground">
+                        {email.email}
+                      </span>
+                    </span>
+                  </a>
+                ))}
 
-                  <span className="min-w-0">
-                    <span className="block text-sm text-muted">
-                      Correo electrónico
+                {phones.length > 0 ? (
+                  <div className="flex items-start gap-4 py-5">
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-secondary/15 text-secondary">
+                      <PhoneIcon className="size-6" />
                     </span>
-                    <span className="mt-1 block break-all font-semibold text-foreground">
-                      {contactConfig.email}
-                    </span>
-                  </span>
-                </a>
 
-                <a
-                  href={`tel:+${contactConfig.whatsappNumber}`}
-                  aria-label="Llamar a AFAP"
-                  className="flex items-center gap-4 pt-5 transition-colors hover:text-secondary"
-                >
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-secondary/15 text-secondary">
-                    <PhoneIcon className="size-6" />
-                  </span>
+                    <div className="min-w-0 flex-1 divide-y divide-border/60">
+                      {phones.map((phone, index) => {
+                        const phoneHref = createPhoneHref(phone.number);
+                        const phoneWhatsappUrl = phone.whatsapp
+                          ? createWhatsappUrl(phone.number)
+                          : undefined;
 
-                  <span>
-                    <span className="block text-sm text-muted">
-                      Teléfono
-                    </span>
-                    <span className="mt-1 block font-semibold text-foreground">
-                      +{contactConfig.whatsappNumber}
-                    </span>
-                  </span>
-                </a>
+                        return (
+                          <div
+                            key={`${phone.label}-${phone.number}`}
+                            className={index === 0 ? "pb-4" : "py-4 last:pb-0"}
+                          >
+                            <span className="block text-sm text-muted">
+                              {phone.label}
+                            </span>
+                            <span className="mt-1 block font-semibold text-foreground">
+                              {phone.number}
+                            </span>
+
+                            {phoneHref || phoneWhatsappUrl ? (
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {phoneHref ? (
+                                  <a
+                                    href={phoneHref}
+                                    aria-label={`Llamar a ${phone.label}`}
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:border-primary hover:bg-primary/10"
+                                  >
+                                    <PhoneIcon className="size-4" />
+                                    Llamar
+                                  </a>
+                                ) : null}
+
+                                {phoneWhatsappUrl ? (
+                                  <a
+                                    href={phoneWhatsappUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Escribir por WhatsApp a ${phone.label}`}
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-secondary/40 px-3 py-1.5 text-xs font-semibold text-secondary transition-colors hover:border-secondary hover:bg-secondary/10"
+                                  >
+                                    <WhatsAppIcon className="size-4" />
+                                    WhatsApp
+                                  </a>
+                                ) : null}
+                              </div>
+                            ) : null}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : null}
               </address>
               </div>
 
@@ -126,9 +186,9 @@ export function ContactSection() {
                   <span className="absolute bottom-36 left-1/2 hidden h-6 w-10 origin-bottom-left rotate-48 rounded-[100%_0] bg-secondary/25 sm:block" />
                 </span>
               </div>
-            </aside>
+            </aside> : null}
 
-            <aside className="rounded-3xl border border-secondary/20 bg-secondary/10 p-6 sm:p-8">
+            {whatsappUrl ? <aside className="rounded-3xl border border-secondary/20 bg-secondary/10 p-6 sm:p-8">
               <h2 className="text-xl font-bold text-foreground">
                 ¿Prefieres hablar?
               </h2>
@@ -137,7 +197,7 @@ export function ContactSection() {
                 posible.
               </p>
               <LinkButton
-                href={contactConfig.whatsappUrl}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Abrir conversación de WhatsApp con AFAP"
@@ -147,8 +207,8 @@ export function ContactSection() {
                 <WhatsAppIcon className="size-5" />
                 Escribir por WhatsApp
               </LinkButton>
-            </aside>
-          </div>
+            </aside> : null}
+          </div> : null}
         </div>
       </Container>
     </Section>

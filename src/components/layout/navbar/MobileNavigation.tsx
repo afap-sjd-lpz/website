@@ -10,12 +10,15 @@ import {
   MenuIcon,
   WhatsAppIcon,
 } from "@/components/ui/icons";
-import { contactConfig } from "@/config/contact.config";
 import { navigationItems } from "@/config/navigation.config";
 
 import { isNavigationItemActive } from "./navigation.utils";
 
-export function MobileNavigation() {
+interface MobileNavigationProps {
+  whatsappUrl?: string;
+}
+
+export function MobileNavigation({ whatsappUrl }: MobileNavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -70,9 +73,9 @@ export function MobileNavigation() {
                 </nav>
               </Drawer.Body>
 
-              <Drawer.Footer className="flex-col items-stretch border-t border-border pt-4">
+              {whatsappUrl ? <Drawer.Footer className="flex-col items-stretch border-t border-border pt-4">
                 <LinkButton
-                  href={contactConfig.whatsappUrl}
+                  href={whatsappUrl}
                   intent="secondary"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -83,7 +86,7 @@ export function MobileNavigation() {
                   <WhatsAppIcon className="size-4" />
                   Escríbenos por WhatsApp
                 </LinkButton>
-              </Drawer.Footer>
+              </Drawer.Footer> : null}
             </Drawer.Dialog>
           </Drawer.Content>
         </Drawer.Backdrop>

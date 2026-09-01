@@ -1,0 +1,1 @@
+export {AboutBoard} from './AboutBoard'

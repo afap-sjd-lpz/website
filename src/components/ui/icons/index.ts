@@ -35,3 +35,5 @@ export { TargetIcon } from "./TargetIcon";
 export type { TargetIconProps } from "./TargetIcon";
 export { WhatsAppIcon } from "./WhatsAppIcon";
 export type { WhatsAppIconProps } from "./WhatsAppIcon";
+export { YouTubeIcon } from "./YouTubeIcon";
+export type { YouTubeIconProps } from "./YouTubeIcon";
