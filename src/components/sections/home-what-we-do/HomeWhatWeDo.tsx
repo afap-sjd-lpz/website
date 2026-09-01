@@ -16,7 +16,7 @@ const areas = [
     colorClassName: "bg-primary/15 text-primary",
   },
   {
-    title: "Sensibilización",
+    title: "Sensibilización y Socialización",
     description:
       "Promovemos talleres y actividades de sensibilización y socialización sobre salud mental y trastornos mentales.",
     Icon: CommunityIcon,
@@ -25,7 +25,7 @@ const areas = [
   {
     title: "Defensa de derechos",
     description:
-      "Promovemos y defendemos los derechos de las personas con trastornos y discapacidad mental y/o psíquica y de sus familias.",
+      "Promovemos y defendemos los derechos de las personas con trastornos o discapacidad mental y de sus familias.",
     Icon: HeartIcon,
     colorClassName: "bg-accent/15 text-accent",
   },

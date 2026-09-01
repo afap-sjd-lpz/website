@@ -43,8 +43,8 @@ export function AboutReach() {
               </p>
               <p>
                 Nuestro crecimiento es progresivo y buscamos fortalecer
-                vínculos que permitan acercar orientación, información y
-                defensa de derechos a más familias en Bolivia.
+                vínculos que permitan brindar orientación, información y
+                defensa de derechos a las familias bolivianas.
               </p>
             </div>
           </div>

@@ -1,33 +1,30 @@
-import {LinkButton} from '@/components/ui/button'
-import {Container} from '@/components/ui/container'
-import {BookIcon, HeartIcon} from '@/components/ui/icons'
-import {Section} from '@/components/ui/section'
-import type {
-  ResourceSort,
-  ResourceType,
-} from '@/sanity/queries'
+import { LinkButton } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { BookIcon, HeartIcon } from "@/components/ui/icons";
+import { Section } from "@/components/ui/section";
+import type { ResourceSort, ResourceType } from "@/sanity/queries";
 import type {
   RESOURCES_QUERY_RESULT,
   TOPICS_QUERY_RESULT,
-} from '@/sanity/sanity.types'
+} from "@/sanity/sanity.types";
 
-import {ResourceCard} from './ResourceCard'
+import { ResourceCard } from "./ResourceCard";
 import {
   ResourceDesktopFilters,
   ResourceMobileFilters,
   ResourceSortSelect,
-} from './ResourceControls'
-import {ResourcePagination} from './ResourcePagination'
+} from "./ResourceControls";
+import { ResourcePagination } from "./ResourcePagination";
 
 export interface ResourceLibraryProps {
-  items: RESOURCES_QUERY_RESULT['items']
-  total: number
-  totalPages: number
-  currentPage: number
-  topics: TOPICS_QUERY_RESULT
-  topicSlug: string | null
-  resourceType: ResourceType | null
-  sort: ResourceSort
+  items: RESOURCES_QUERY_RESULT["items"];
+  total: number;
+  totalPages: number;
+  currentPage: number;
+  topics: TOPICS_QUERY_RESULT;
+  topicSlug: string | null;
+  resourceType: ResourceType | null;
+  sort: ResourceSort;
 }
 
 export function ResourceLibrary({
@@ -40,7 +37,7 @@ export function ResourceLibrary({
   resourceType,
   sort,
 }: ResourceLibraryProps) {
-  const controlProps = {topics, topicSlug, resourceType, sort}
+  const controlProps = { topics, topicSlug, resourceType, sort };
 
   return (
     <Section
@@ -58,7 +55,7 @@ export function ResourceLibrary({
             </h2>
             <p className="mt-2 text-muted">
               {total === 1
-                ? '1 recurso encontrado'
+                ? "1 recurso encontrado"
                 : `${total} recursos encontrados`}
             </p>
           </div>
@@ -136,8 +133,8 @@ export function ResourceLibrary({
                 Información que orienta, acompaña y fortalece
               </h2>
               <p className="mt-2 max-w-2xl leading-7 text-muted">
-                Conoce también nuestras actividades y espacios de participación
-                para personas y familias.
+                Conoce nuestras actividades y espacios de participación para
+                personas y familias.
               </p>
             </div>
           </div>
@@ -152,5 +149,5 @@ export function ResourceLibrary({
         </div>
       </Container>
     </Section>
-  )
+  );
 }

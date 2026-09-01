@@ -1,7 +1,7 @@
-import Image from 'next/image'
+import Image from "next/image";
 
-import {Container} from '@/components/ui/container'
-import {Section} from '@/components/ui/section'
+import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
 
 export function ResourceLibraryHero() {
   return (
@@ -22,9 +22,9 @@ export function ResourceLibraryHero() {
               Biblioteca de recursos
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl sm:leading-9">
-              AFAP reúne artículos, materiales y videos para informar,
-              orientar y acompañar a personas y familias en temas
-              relacionados con la salud mental.
+              AFAP reúne artículos, materiales y videos para informar, orientar
+              y acompañar a personas y familias en temas relacionados con la
+              salud mental, los trastornos mentales y la discapacidad mental.
             </p>
           </div>
 
@@ -41,5 +41,5 @@ export function ResourceLibraryHero() {
         </div>
       </Container>
     </Section>
-  )
+  );
 }

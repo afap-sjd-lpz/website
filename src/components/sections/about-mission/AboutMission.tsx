@@ -5,14 +5,14 @@ import { Section } from "@/components/ui/section";
 const statements = [
   {
     title: "Misión",
-    text: "Contribuir a mejorar la calidad de vida de las personas con trastornos y discapacidad mental y/o psíquica y sus familias, fortaleciendo el apoyo mutuo, la orientación, la sensibilización, la defensa de derechos y la articulación con la comunidad y las instituciones.",
+    text: "Contribuir a mejorar la calidad de vida de las personas con trastornos o discapacidad mental y de sus familias, fortaleciendo el apoyo mutuo, la orientación, la sensibilización, la defensa de derechos y la articulación con la comunidad y las instituciones.",
     className: "border-primary/20 bg-primary/10",
     iconClassName: "bg-primary/20 text-primary",
     Icon: TargetIcon,
   },
   {
     title: "Visión",
-    text: "Consolidar una comunidad de alcance nacional que contribuya a una Bolivia más informada, inclusiva y respetuosa de los derechos de las personas con trastornos y discapacidad mental y/o psíquica y de sus familias.",
+    text: "Consolidar una comunidad de alcance nacional que contribuya a una Bolivia más informada, inclusiva y respetuosa de los derechos de las personas con trastornos o discapacidad mental y de sus familias.",
     className: "border-secondary/20 bg-secondary/10",
     iconClassName: "bg-secondary/20 text-secondary",
     Icon: EyeIcon,

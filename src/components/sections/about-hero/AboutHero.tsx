@@ -6,7 +6,10 @@ import { Section } from "@/components/ui/section";
 
 export function AboutHero() {
   return (
-    <Section aria-labelledby="about-hero-title" className="pb-12 sm:pb-14 lg:pb-16">
+    <Section
+      aria-labelledby="about-hero-title"
+      className="pb-12 sm:pb-14 lg:pb-16"
+    >
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
@@ -20,10 +23,10 @@ export function AboutHero() {
               Familias y personas unidas por la salud mental
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-muted sm:text-xl sm:leading-9">
-              AFAP es una asociación sin fines de lucro que trabaja por
-              el bienestar, la inclusión y los derechos de las personas
-              con trastornos y discapacidad mental y/o psíquica y de sus
-              familias.
+              AFAP es una asociación sin fines de lucro que trabaja por el
+              bienestar, la inclusión y los derechos de las personas con
+              trastornos o discapacidad mental, constituyéndose en una guía y
+              un apoyo para sus familias.
             </p>
 
             <LinkButton

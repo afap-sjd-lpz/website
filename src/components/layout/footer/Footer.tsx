@@ -85,8 +85,7 @@ export function Footer({ contactSettings }: FooterProps) {
               <Brand />
 
               <p className="mt-6 max-w-sm leading-7 text-foreground">
-                Acompañamos a personas y familias promoviendo apoyo,
-                orientación, inclusión y bienestar en salud mental.
+                Asociación de Familiares y Amigos de Pacientes con Discapacidad Mental
               </p>
             </div>
 

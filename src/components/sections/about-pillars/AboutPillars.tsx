@@ -15,14 +15,14 @@ const pillars = [
     iconClassName: "bg-primary/15 text-primary",
   },
   {
-    title: "Sensibilización e inclusión",
-    text: "Impulsamos una mirada social más informada y respetuosa para favorecer la inclusión de las personas y familias.",
+    title: "Sensibilización y socialización",
+    text: "Impulsamos una visión social informada y respetuosa que favorezca la salud mental y mejore las condiciones de vida de las personas con trastornos o discapacidad mental.",
     Icon: CommunityIcon,
     iconClassName: "bg-secondary/15 text-secondary",
   },
   {
     title: "Defensa de derechos",
-    text: "Promovemos y defendemos la dignidad, la participación y los derechos de las personas y sus familias.",
+    text: "Promovemos y defendemos la dignidad, la inclusión y los derechos de las personas con trastornos o discapacidad mental y de sus familias.",
     Icon: HeartIcon,
     iconClassName: "bg-accent/15 text-accent",
   },

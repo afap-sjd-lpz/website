@@ -25,9 +25,10 @@ export function CommunityHero() {
               Construimos comunidad, compartimos recursos
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-muted sm:text-xl sm:leading-9">
-              En AFAP encontrarás actividades, espacios de participación
-              y materiales que informan, orientan y fortalecen a las
-              personas y familias.
+              En AFAP encontrarás actividades, espacios de participación y
+              materiales de información que orientan y fortalecen el
+              conocimiento sobre la salud mental, los trastornos mentales y la
+              discapacidad mental.
             </p>
 
             <LinkButton
