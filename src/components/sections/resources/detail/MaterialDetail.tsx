@@ -2,13 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import {Reveal} from '@/components/motion'
-import {MaterialFallback} from '@/components/sections/resource-library/ResourceCard'
+import {MaterialFallback} from '@/components/sections/resources/library/ResourceCard'
 import {
   formatResourceDate,
   RelatedResources,
   ResourceDetailInfoRow,
   ResourceOrientationCard,
-} from '@/components/sections/resource-detail'
+} from '@/components/sections/resources/detail'
 import {LinkButton} from '@/components/ui/button'
 import {Container} from '@/components/ui/container'
 import {

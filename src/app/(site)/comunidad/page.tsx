@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { CommunityActivities } from "@/components/sections/community-activities";
-import { CommunityHero } from "@/components/sections/community-hero";
-import { CommunityJoin } from "@/components/sections/community-join";
-import { CommunityResources } from "@/components/sections/community-resources";
+import { CommunityActivities } from "@/components/sections/community/CommunityActivities";
+import { CommunityHero } from "@/components/sections/community/CommunityHero";
+import { CommunityJoin } from "@/components/sections/community/CommunityJoin";
+import { CommunityResources } from "@/components/sections/community/CommunityResources";
 
 export const metadata: Metadata = {
   title: "Comunidad y recursos | AFAP",

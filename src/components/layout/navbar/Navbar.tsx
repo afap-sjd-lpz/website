@@ -1,4 +1,4 @@
-import { Brand } from "@/components/layout/brand";
+import { Brand } from "@/components/layout/Brand";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { WhatsAppIcon } from "@/components/ui/icons";

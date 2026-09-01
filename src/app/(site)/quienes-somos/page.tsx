@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
-import { AboutCta } from "@/components/sections/about-cta";
-import { AboutBoard } from "@/components/sections/about-board";
-import { AboutHero } from "@/components/sections/about-hero";
-import { AboutHistory } from "@/components/sections/about-history";
-import { AboutMission } from "@/components/sections/about-mission";
-import { AboutPillars } from "@/components/sections/about-pillars";
-import { AboutReach } from "@/components/sections/about-reach";
+import { AboutBoard } from "@/components/sections/about/AboutBoard";
+import { AboutCta } from "@/components/sections/about/AboutCta";
+import { AboutHero } from "@/components/sections/about/AboutHero";
+import { AboutHistory } from "@/components/sections/about/AboutHistory";
+import { AboutMission } from "@/components/sections/about/AboutMission";
+import { AboutPillars } from "@/components/sections/about/AboutPillars";
+import { AboutReach } from "@/components/sections/about/AboutReach";
 import {
   getActiveBoardMembers,
   getBoardSettings,

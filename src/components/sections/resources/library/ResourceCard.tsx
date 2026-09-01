@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import {getResourceDetailHref} from '@/components/sections/resource-detail/resource-detail.utils'
+import {getResourceDetailHref} from '@/components/sections/resources/detail/resource-detail.utils'
 import {
   getYouTubeThumbnailUrl,
   getYouTubeVideoId,
-} from '@/components/sections/resource-detail/youtube.utils'
+} from '@/components/sections/resources/detail/youtube.utils'
 import {
   BookIcon,
   CalendarIcon,

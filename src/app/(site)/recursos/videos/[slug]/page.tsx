@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {cache} from 'react'
 
-import {VideoDetail} from '@/components/sections/video-detail'
+import {VideoDetail} from '@/components/sections/resources/detail/VideoDetail'
 import {client} from '@/sanity/lib/client'
 import {
   RELATED_RESOURCES_QUERY,

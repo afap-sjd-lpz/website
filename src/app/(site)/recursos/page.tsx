@@ -1,9 +1,9 @@
 import type {Metadata} from 'next'
 import {notFound, redirect} from 'next/navigation'
 
-import {ResourceLibrary} from '@/components/sections/resource-library'
-import {ResourceLibraryHero} from '@/components/sections/resource-library-hero'
-import {createResourceUrl} from '@/components/sections/resource-library/resource-library.utils'
+import {ResourceLibraryHero} from '@/components/sections/resources/ResourceLibraryHero'
+import {ResourceLibrary} from '@/components/sections/resources/library/ResourceLibrary'
+import {createResourceUrl} from '@/components/sections/resources/library/resource-library.utils'
 import {client} from '@/sanity/lib/client'
 import {
   RESOURCES_OLDEST_QUERY,

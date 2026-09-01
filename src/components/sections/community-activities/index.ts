@@ -1,1 +1,0 @@
-export { CommunityActivities } from "./CommunityActivities";

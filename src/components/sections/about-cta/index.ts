@@ -1,1 +1,0 @@
-export { AboutCta } from "./AboutCta";

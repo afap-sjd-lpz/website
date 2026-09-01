@@ -1,1 +1,0 @@
-export { ContactMessage } from "./ContactMessage";

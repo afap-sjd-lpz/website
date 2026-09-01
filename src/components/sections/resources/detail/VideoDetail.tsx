@@ -1,14 +1,14 @@
 import Link from 'next/link'
 
 import {Reveal} from '@/components/motion'
-import {VideoFallback} from '@/components/sections/resource-library/ResourceCard'
+import {VideoFallback} from '@/components/sections/resources/library/ResourceCard'
 import {
   formatResourceDate,
   getYouTubeVideoId,
   RelatedResources,
   ResourceDetailInfoRow,
   ResourceOrientationCard,
-} from '@/components/sections/resource-detail'
+} from '@/components/sections/resources/detail'
 import {Container} from '@/components/ui/container'
 import {CalendarIcon, CommunityIcon, PlayIcon} from '@/components/ui/icons'
 import {Section} from '@/components/ui/section'

@@ -1,1 +1,0 @@
-export { CommunityHero } from "./CommunityHero";

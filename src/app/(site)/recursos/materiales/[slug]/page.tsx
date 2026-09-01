@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {cache} from 'react'
 
-import {MaterialDetail} from '@/components/sections/material-detail'
+import {MaterialDetail} from '@/components/sections/resources/detail/MaterialDetail'
 import {client} from '@/sanity/lib/client'
 import {
   MATERIAL_BY_SLUG_QUERY,

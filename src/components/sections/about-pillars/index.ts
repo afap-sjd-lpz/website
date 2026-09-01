@@ -1,1 +1,0 @@
-export { AboutPillars } from "./AboutPillars";

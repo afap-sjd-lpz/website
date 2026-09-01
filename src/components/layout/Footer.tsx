@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 
-import { Brand } from "@/components/layout/brand";
+import { Brand } from "@/components/layout/Brand";
 import { Container } from "@/components/ui/container";
 import {
   BookIcon,

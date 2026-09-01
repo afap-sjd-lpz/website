@@ -7,7 +7,7 @@ import {
   RelatedResources,
   ResourceDetailInfoRow,
   ResourceOrientationCard,
-} from '@/components/sections/resource-detail'
+} from '@/components/sections/resources/detail'
 import {Container} from '@/components/ui/container'
 import {
   BookIcon,
