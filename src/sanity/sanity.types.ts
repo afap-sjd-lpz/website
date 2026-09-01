@@ -15,6 +15,76 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: src/sanity/schema.json
+export type ContactSettings = {
+  _id: string;
+  _type: "contactSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  phones?: Array<
+    {
+      _key: string;
+    } & ContactPhone
+  >;
+  emails?: Array<
+    {
+      _key: string;
+    } & ContactEmail
+  >;
+  location?: string;
+  socialLinks?: Array<
+    {
+      _key: string;
+    } & SocialLink
+  >;
+};
+
+export type BoardSettings = {
+  _id: string;
+  _type: "boardSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  termLabel: string;
+};
+
+export type BoardMember = {
+  _id: string;
+  _type: "boardMember";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  role:
+    | "presidency"
+    | "vicePresidency"
+    | "minutesSecretary"
+    | "financeSecretary"
+    | "boardMember";
+  photo?: AccessibleImage;
+  order: number;
+  active: boolean;
+};
+
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type AccessibleImage = {
+  _type: "accessibleImage";
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt: string;
+};
+
 export type TopicReference = {
   _ref: string;
   _type: "reference";
@@ -89,25 +159,6 @@ export type Material = {
   seo?: Seo;
 };
 
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-};
-
-export type AccessibleImage = {
-  _type: "accessibleImage";
-  image: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  alt: string;
-};
-
 export type Article = {
   _id: string;
   _type: "article";
@@ -160,6 +211,30 @@ export type Topic = {
   slug: Slug;
   description?: string;
   order?: number;
+};
+
+export type SocialLink = {
+  _type: "socialLink";
+  platform: "facebook" | "youtube";
+  url: string;
+  order: number;
+};
+
+export type ContactPhone = {
+  _type: "contactPhone";
+  label: string;
+  number: string;
+  whatsapp: boolean;
+  primaryWhatsapp: boolean;
+  order: number;
+};
+
+export type ContactEmail = {
+  _type: "contactEmail";
+  label: string;
+  email: string;
+  purpose: "contact" | "privacy" | "other";
+  order: number;
 };
 
 export type SanityImageCrop = {
@@ -276,17 +351,23 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | ContactSettings
+  | BoardSettings
+  | BoardMember
+  | SanityImageAssetReference
+  | AccessibleImage
   | TopicReference
   | Video
   | Seo
   | Slug
   | SanityFileAssetReference
   | Material
-  | SanityImageAssetReference
-  | AccessibleImage
   | Article
   | BlockContent
   | Topic
+  | SocialLink
+  | ContactPhone
+  | ContactEmail
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImagePaletteSwatch
@@ -319,6 +400,55 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
   author: string | null;
   featured: boolean | null;
   seo: Seo | null;
+} | null;
+
+// Source: src/sanity/queries/institutional.ts
+// Variable: CONTACT_SETTINGS_QUERY
+// Query: *[    _id == "contactSettings" &&    _type == "contactSettings" &&    !(_id in path("drafts.**"))  ][0] {    "phones": phones[]{      label,      number,      whatsapp,      primaryWhatsapp,      order    } | order(order asc),    "emails": emails[]{      label,      email,      purpose,      order    } | order(order asc),    location,    "socialLinks": socialLinks[]{      platform,      url,      order    } | order(order asc)  }
+export type CONTACT_SETTINGS_QUERY_RESULT = {
+  phones: Array<{
+    label: string;
+    number: string;
+    whatsapp: boolean;
+    primaryWhatsapp: boolean;
+    order: number;
+  }> | null;
+  emails: Array<{
+    label: string;
+    email: string;
+    purpose: "contact" | "other" | "privacy";
+    order: number;
+  }> | null;
+  location: string | null;
+  socialLinks: Array<{
+    platform: "facebook" | "youtube";
+    url: string;
+    order: number;
+  }> | null;
+} | null;
+
+// Source: src/sanity/queries/institutional.ts
+// Variable: ACTIVE_BOARD_MEMBERS_QUERY
+// Query: *[    _type == "boardMember" &&    !(_id in path("drafts.**")) &&    active == true  ] | order(order asc, name asc, _id asc) {    _id,    name,    role,    photo,    order,    active  }
+export type ACTIVE_BOARD_MEMBERS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string;
+  role:
+    | "boardMember"
+    | "financeSecretary"
+    | "minutesSecretary"
+    | "presidency"
+    | "vicePresidency";
+  photo: AccessibleImage | null;
+  order: number;
+  active: boolean;
+}>;
+
+// Source: src/sanity/queries/institutional.ts
+// Variable: BOARD_SETTINGS_QUERY
+// Query: *[    _id == "boardSettings" &&    _type == "boardSettings" &&    !(_id in path("drafts.**"))  ][0] {    termLabel  }
+export type BOARD_SETTINGS_QUERY_RESULT = {
+  termLabel: string;
 } | null;
 
 // Source: src/sanity/queries/materials.ts
@@ -553,6 +683,9 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[\n    _type == "article" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    summary,\n    mainImage,\n    content,\n    "topics": topics[]->{\n      _id,\n      name,\n      "slug": slug.current\n    },\n    publishedAt,\n    reviewedAt,\n    author,\n    featured,\n    seo\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
+    '\n  *[\n    _id == "contactSettings" &&\n    _type == "contactSettings" &&\n    !(_id in path("drafts.**"))\n  ][0] {\n    "phones": phones[]{\n      label,\n      number,\n      whatsapp,\n      primaryWhatsapp,\n      order\n    } | order(order asc),\n    "emails": emails[]{\n      label,\n      email,\n      purpose,\n      order\n    } | order(order asc),\n    location,\n    "socialLinks": socialLinks[]{\n      platform,\n      url,\n      order\n    } | order(order asc)\n  }\n': CONTACT_SETTINGS_QUERY_RESULT;
+    '\n  *[\n    _type == "boardMember" &&\n    !(_id in path("drafts.**")) &&\n    active == true\n  ] | order(order asc, name asc, _id asc) {\n    _id,\n    name,\n    role,\n    photo,\n    order,\n    active\n  }\n': ACTIVE_BOARD_MEMBERS_QUERY_RESULT;
+    '\n  *[\n    _id == "boardSettings" &&\n    _type == "boardSettings" &&\n    !(_id in path("drafts.**"))\n  ][0] {\n    termLabel\n  }\n': BOARD_SETTINGS_QUERY_RESULT;
     '\n  *[\n    _type == "material" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    description,\n    cover,\n    file {\n      asset->{\n        _id,\n        url,\n        originalFilename,\n        mimeType\n      }\n    },\n    externalUrl,\n    source,\n    "topics": topics[]->{\n      _id,\n      name,\n      "slug": slug.current\n    },\n    publishedAt,\n    featured,\n    seo\n  }\n': MATERIAL_BY_SLUG_QUERY_RESULT;
     '\n  {\n    "items": *[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ]\n      | order(featured desc, publishedAt desc, _id asc)[$start...$end] {\n        _id,\n        _type,\n        title,\n        "slug": slug.current,\n        publishedAt,\n        featured,\n        "topics": topics[]->{\n          _id,\n          name,\n          "slug": slug.current\n        },\n        _type == "article" => {\n          summary,\n          mainImage\n        },\n        _type == "material" => {\n          description,\n          cover,\n          source\n        },\n        _type == "video" => {\n          description,\n          videoType,\n          youtubeUrl\n        }\n      },\n    "total": count(*[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ])\n  }\n': RESOURCES_QUERY_RESULT;
     '\n  {\n    "items": *[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ]\n      | order(featured desc, publishedAt asc, _id asc)[$start...$end] {\n        _id,\n        _type,\n        title,\n        "slug": slug.current,\n        publishedAt,\n        featured,\n        "topics": topics[]->{\n          _id,\n          name,\n          "slug": slug.current\n        },\n        _type == "article" => {\n          summary,\n          mainImage\n        },\n        _type == "material" => {\n          description,\n          cover,\n          source\n        },\n        _type == "video" => {\n          description,\n          videoType,\n          youtubeUrl\n        }\n      },\n    "total": count(*[\n      _type in ["article", "material", "video"] &&\n      !(_id in path("drafts.**")) &&\n      (!defined($topicSlug) || $topicSlug in topics[]->slug.current) &&\n      (!defined($resourceType) || _type == $resourceType)\n    ])\n  }\n': RESOURCES_OLDEST_QUERY_RESULT;
