@@ -11,11 +11,18 @@ import {
   LocationIcon,
   MailIcon,
   PeopleIcon,
+  PhoneIcon,
   WhatsAppIcon,
+  YouTubeIcon,
   type IconProps,
 } from "@/components/ui/icons";
-import { contactConfig } from "@/config/contact.config";
 import { navigationItems } from "@/config/navigation.config";
+import {
+  createPhoneHref,
+  createWhatsappUrl,
+  getEmailByPurpose,
+  type ContactSettingsData,
+} from "@/sanity/lib/institutional";
 
 const navigationIcons: Record<
   string,
@@ -54,12 +61,26 @@ function SocialLink({
   );
 }
 
-export function Footer() {
+interface FooterProps {
+  contactSettings: ContactSettingsData;
+}
+
+export function Footer({ contactSettings }: FooterProps) {
+  const phones = contactSettings?.phones ?? [];
+  const contactEmail = getEmailByPurpose(contactSettings, "contact");
+  const socialLinks = contactSettings?.socialLinks ?? [];
+
   return (
     <footer className="py-6 sm:py-8">
       <Container>
         <div className="rounded-3xl bg-primary/10 px-6 py-10 sm:px-8 lg:px-10 lg:py-12">
-          <div className="grid gap-10 text-center md:grid-cols-3 md:gap-12 md:text-start lg:gap-20">
+          <div
+            className={`grid gap-10 text-center md:text-start ${
+              socialLinks.length > 0
+                ? "md:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-10"
+                : "md:grid-cols-3 md:gap-12 lg:gap-20"
+            }`}
+          >
             <div className="flex flex-col items-center md:items-start">
               <Brand />
 
@@ -104,45 +125,103 @@ export function Footer() {
               </h2>
 
               <div className="mt-5 flex flex-col items-center gap-4 text-foreground md:items-start">
-                <p className="flex items-center gap-3">
+                {contactSettings?.location ? <p className="flex items-center gap-3">
                   <LocationIcon className="size-6 shrink-0 text-primary" />
-                  {contactConfig.location}
-                </p>
+                  {contactSettings.location}
+                </p> : null}
 
-                <a
-                  href={`mailto:${contactConfig.email}`}
+                {phones.length > 0 ? (
+                  <div className="flex items-start gap-3">
+                    <PhoneIcon className="mt-0.5 size-6 shrink-0 text-primary" />
+                    <ul className="grid gap-3 text-start">
+                      {phones.map((phone) => {
+                        const phoneHref = createPhoneHref(phone.number);
+                        const phoneWhatsappUrl = phone.whatsapp
+                          ? createWhatsappUrl(phone.number)
+                          : undefined;
+
+                        return (
+                          <li
+                            key={`${phone.label}-${phone.number}`}
+                            className="flex items-center justify-between gap-3"
+                          >
+                            <span className="min-w-0">
+                              <span className="block text-sm font-semibold">
+                                {phone.label}
+                              </span>
+                              <span className="block text-muted">
+                                {phone.number}
+                              </span>
+                            </span>
+
+                            {phoneHref || phoneWhatsappUrl ? (
+                              <span className="flex shrink-0 gap-1">
+                                {phoneHref ? (
+                                  <a
+                                    href={phoneHref}
+                                    aria-label={`Llamar a ${phone.label}`}
+                                    title={`Llamar a ${phone.label}`}
+                                    className="inline-flex size-7 items-center justify-center rounded-lg text-primary transition-colors hover:bg-primary/10"
+                                  >
+                                    <PhoneIcon className="size-4" />
+                                  </a>
+                                ) : null}
+
+                                {phoneWhatsappUrl ? (
+                                  <a
+                                    href={phoneWhatsappUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Escribir por WhatsApp a ${phone.label}`}
+                                    title={`Escribir por WhatsApp a ${phone.label}`}
+                                    className="inline-flex size-7 items-center justify-center rounded-lg text-secondary transition-colors hover:bg-secondary/10"
+                                  >
+                                    <WhatsAppIcon className="size-4" />
+                                  </a>
+                                ) : null}
+                              </span>
+                            ) : null}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ) : null}
+
+                {contactEmail ? <a
+                  href={`mailto:${contactEmail.email}`}
                   className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
                   <MailIcon className="size-6 shrink-0 text-primary" />
-                  {contactConfig.email}
-                </a>
+                  {contactEmail.email}
+                </a> : null}
               </div>
 
-              <div className="mt-6 flex justify-center gap-3 md:justify-start">
-                <SocialLink
-                  href={contactConfig.facebookUrl}
-                  label="Visitar Facebook de AFAP"
-                  opensInNewTab
-                >
-                  <FacebookIcon className="size-5" />
-                </SocialLink>
-
-                <SocialLink
-                  href={contactConfig.whatsappUrl}
-                  label="Escribir a AFAP por WhatsApp"
-                  opensInNewTab
-                >
-                  <WhatsAppIcon className="size-5" />
-                </SocialLink>
-
-                <SocialLink
-                  href={`mailto:${contactConfig.email}`}
-                  label="Enviar un correo electrónico a AFAP"
-                >
-                  <MailIcon className="size-5" />
-                </SocialLink>
-              </div>
             </div>
+
+            {socialLinks.length > 0 ? (
+              <div>
+                <h2 className="text-lg font-bold text-foreground">
+                  Redes sociales
+                </h2>
+                <div className="mt-5 flex justify-center gap-3 md:justify-start">
+                  {socialLinks.map((socialLink) => (
+                    <SocialLink
+                      key={`${socialLink.platform}-${socialLink.url}`}
+                      href={socialLink.url}
+                      label={`Visitar ${socialLink.platform === "facebook" ? "Facebook" : "YouTube"} de AFAP`}
+                      opensInNewTab
+                    >
+                      {socialLink.platform === "facebook" ? (
+                        <FacebookIcon className="size-5" />
+                      ) : (
+                        <YouTubeIcon className="size-5" />
+                      )}
+                    </SocialLink>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-4 border-t border-primary/25 pt-6 text-center text-sm text-muted sm:flex-row sm:justify-between sm:text-start">

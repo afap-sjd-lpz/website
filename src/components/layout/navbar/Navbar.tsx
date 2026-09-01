@@ -2,12 +2,25 @@ import { Brand } from "@/components/layout/brand";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { WhatsAppIcon } from "@/components/ui/icons";
-import { contactConfig } from "@/config/contact.config";
+import {
+  createWhatsappUrl,
+  getPrimaryWhatsapp,
+  type ContactSettingsData,
+} from "@/sanity/lib/institutional";
 
 import { DesktopNavigation } from "./DesktopNavigation";
 import { MobileNavigation } from "./MobileNavigation";
 
-export function Navbar() {
+interface NavbarProps {
+  contactSettings: ContactSettingsData;
+}
+
+export function Navbar({ contactSettings }: NavbarProps) {
+  const primaryWhatsapp = getPrimaryWhatsapp(contactSettings);
+  const whatsappUrl = primaryWhatsapp
+    ? createWhatsappUrl(primaryWhatsapp.number)
+    : undefined;
+
   return (
     <header className="border-b border-border bg-surface">
       <Container>
@@ -16,9 +29,9 @@ export function Navbar() {
 
           <DesktopNavigation />
 
-          <div className="hidden md:block">
+          {whatsappUrl ? <div className="hidden md:block">
             <LinkButton
-              href={contactConfig.whatsappUrl}
+              href={whatsappUrl}
               intent="secondary"
               target="_blank"
               rel="noopener noreferrer"
@@ -27,9 +40,9 @@ export function Navbar() {
               <WhatsAppIcon className="size-4" />
               Escríbenos
             </LinkButton>
-          </div>
+          </div> : null}
 
-          <MobileNavigation />
+          <MobileNavigation whatsappUrl={whatsappUrl} />
         </div>
       </Container>
     </header>

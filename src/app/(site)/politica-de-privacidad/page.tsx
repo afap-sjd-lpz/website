@@ -3,7 +3,10 @@ import type { ReactNode } from "react";
 
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { contactConfig } from "@/config/contact.config";
+import {
+  getContactSettings,
+  getEmailByPurpose,
+} from "@/sanity/lib/institutional";
 
 export const metadata: Metadata = {
   title: "Política de Privacidad | AFAP",
@@ -32,7 +35,12 @@ function PolicySection({ children, title }: PolicySectionProps) {
 
 const listClassName = "grid list-disc gap-2 pl-6";
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const contactSettings = await getContactSettings();
+  const privacyEmail =
+    getEmailByPurpose(contactSettings, "privacy") ??
+    getEmailByPurpose(contactSettings, "contact");
+
   return (
     <Section>
       <Container className="max-w-5xl">
@@ -442,14 +450,14 @@ export default function PrivacyPolicyPage() {
                 con AFAP mediante el correo electrónico de privacidad
                 indicado en esta página.
               </p>
-              <p>
+              {privacyEmail ? <p>
                 <a
-                  href={`mailto:${contactConfig.privacyEmail}`}
+                  href={`mailto:${privacyEmail.email}`}
                   className="font-semibold text-primary underline-offset-4 hover:underline"
                 >
-                  {contactConfig.privacyEmail}
+                  {privacyEmail.email}
                 </a>
-              </p>
+              </p> : null}
               <p>
                 AFAP — Asociación de Familiares y Amigos de Pacientes con
                 Discapacidad Mental y/o Psíquica de San Juan de Dios - La
