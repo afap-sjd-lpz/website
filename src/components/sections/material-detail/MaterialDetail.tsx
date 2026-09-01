@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import {Reveal} from '@/components/motion'
 import {MaterialFallback} from '@/components/sections/resource-library/ResourceCard'
 import {
   formatResourceDate,
@@ -50,6 +51,7 @@ export function MaterialDetail({
 
         <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(18rem,1fr)] lg:gap-12">
           <article>
+            <Reveal>
             <header>
               <span className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
                 Material
@@ -61,9 +63,10 @@ export function MaterialDetail({
                 {material.description}
               </p>
             </header>
+            </Reveal>
 
             {material.cover?.image.asset ? (
-              <div className="mt-8 flex min-h-96 items-center justify-center rounded-3xl border border-border bg-primary/5 p-4 sm:p-8">
+              <Reveal className="mt-8 flex min-h-96 items-center justify-center rounded-3xl border border-border bg-primary/5 p-4 sm:p-8">
                 <div className="relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-2xl bg-surface shadow-sm">
                   <Image
                     src={urlFor(material.cover.image)
@@ -77,16 +80,16 @@ export function MaterialDetail({
                     className="object-contain"
                   />
                 </div>
-              </div>
+              </Reveal>
             ) : (
-              <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-3xl border border-border">
+              <Reveal className="relative mt-8 aspect-[4/3] overflow-hidden rounded-3xl border border-border">
                 <MaterialFallback />
-              </div>
+              </Reveal>
             )}
           </article>
 
           <aside className="space-y-5 lg:sticky lg:top-6">
-            <div
+            <Reveal
               aria-labelledby="material-info-title"
               className="rounded-3xl border border-border bg-surface p-6"
             >
@@ -157,9 +160,11 @@ export function MaterialDetail({
                   )}
                 </div>
               )}
-            </div>
+            </Reveal>
 
-            <ResourceOrientationCard />
+            <Reveal>
+              <ResourceOrientationCard />
+            </Reveal>
           </aside>
         </div>
 

@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { BookIcon, HeartIcon } from "@/components/ui/icons";
@@ -45,7 +46,7 @@ export function ResourceLibrary({
       className="pt-8 sm:pt-10 lg:pt-10"
     >
       <Container>
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <Reveal className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2
               id="resource-results-title"
@@ -68,20 +69,22 @@ export function ResourceLibrary({
               sort={sort}
             />
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-8 grid gap-7 lg:grid-cols-[17rem_minmax(0,1fr)]">
-          <ResourceDesktopFilters {...controlProps} />
+          <Reveal className="hidden self-start lg:block lg:sticky lg:top-6">
+            <ResourceDesktopFilters {...controlProps} />
+          </Reveal>
 
           <div className="min-w-0">
             {items.length > 0 ? (
-              <div className="grid items-start gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              <Reveal className="grid items-start gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {items.map((resource) => (
                   <ResourceCard key={resource._id} resource={resource} />
                 ))}
-              </div>
+              </Reveal>
             ) : (
-              <div className="flex min-h-80 flex-col items-center justify-center rounded-3xl border border-border bg-surface px-6 py-12 text-center">
+              <Reveal className="flex min-h-80 flex-col items-center justify-center rounded-3xl border border-border bg-surface px-6 py-12 text-center">
                 <span
                   aria-hidden="true"
                   className="flex size-16 items-center justify-center rounded-full bg-primary/15 text-primary"
@@ -98,7 +101,7 @@ export function ResourceLibrary({
                 <LinkButton href="/recursos" intent="outline" className="mt-6">
                   Ver todos los recursos
                 </LinkButton>
-              </div>
+              </Reveal>
             )}
 
             <ResourcePagination
@@ -111,7 +114,7 @@ export function ResourceLibrary({
           </div>
         </div>
 
-        <div className="relative mt-14 overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-7 sm:px-8 lg:flex lg:items-center lg:justify-between lg:gap-10">
+        <Reveal className="relative mt-14 overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-7 sm:px-8 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <span
             aria-hidden="true"
             className="absolute -top-12 -right-8 size-36 rounded-full bg-secondary/15"
@@ -146,7 +149,7 @@ export function ResourceLibrary({
           >
             Ir a Comunidad
           </LinkButton>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

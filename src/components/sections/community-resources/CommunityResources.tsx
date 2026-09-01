@@ -1,3 +1,4 @@
+import {Reveal} from '@/components/motion'
 import {LinkButton} from '@/components/ui/button'
 import {Container} from '@/components/ui/container'
 import {BookIcon} from '@/components/ui/icons'
@@ -10,7 +11,7 @@ export function CommunityResources() {
       className="pt-8 sm:pt-10 lg:pt-8"
     >
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-10 sm:px-10 lg:flex lg:items-center lg:justify-between lg:gap-12">
+        <Reveal className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-10 sm:px-10 lg:flex lg:items-center lg:justify-between lg:gap-12">
           <span
             aria-hidden="true"
             className="absolute -top-16 -right-10 size-44 rounded-full bg-secondary/15"
@@ -51,7 +52,7 @@ export function CommunityResources() {
           >
             Explorar recursos
           </LinkButton>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   )

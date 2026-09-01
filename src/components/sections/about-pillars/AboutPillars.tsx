@@ -1,3 +1,4 @@
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import {
   BookIcon,
   CommunityIcon,
@@ -41,7 +42,7 @@ export function AboutPillars() {
       className="bg-surface pt-8 pb-10 sm:pt-10 sm:pb-10 lg:pt-10 lg:pb-10"
     >
       <Container>
-        <div className="text-center">
+        <Reveal className="text-center">
           <h2
             id="about-pillars-title"
             className="text-3xl font-bold text-foreground sm:text-4xl"
@@ -52,14 +53,12 @@ export function AboutPillars() {
             aria-hidden="true"
             className="mx-auto mt-4 h-1 w-14 rounded-full bg-secondary"
           />
-        </div>
+        </Reveal>
 
-        <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((pillar) => (
-            <article
-              key={pillar.title}
-              className="h-full rounded-3xl border border-border bg-surface p-6"
-            >
+            <StaggerItem key={pillar.title} className="h-full">
+              <article className="h-full rounded-3xl border border-border bg-surface p-6">
               <div className="flex items-start gap-4">
                 <span
                   aria-hidden="true"
@@ -72,9 +71,10 @@ export function AboutPillars() {
                 </h3>
               </div>
               <p className="mt-4 leading-7 text-muted">{pillar.text}</p>
-            </article>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </Section>
   );

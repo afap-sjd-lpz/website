@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/motion";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 
@@ -10,7 +11,7 @@ export function AboutReach() {
       className="bg-surface pt-8 pb-6 sm:pt-8 sm:pb-8 lg:pt-8 lg:pb-8"
     >
       <Container>
-        <div className="grid items-center gap-8 overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-8 sm:px-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12 lg:px-12">
+        <Reveal className="grid items-center gap-8 overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-8 sm:px-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12 lg:px-12">
           <div
             aria-hidden="true"
             className="mx-auto w-full max-w-72 lg:max-w-80"
@@ -48,7 +49,7 @@ export function AboutReach() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

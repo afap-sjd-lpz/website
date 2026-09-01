@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import {Reveal} from '@/components/motion'
 import {
   formatResourceDate,
   RelatedResources,
@@ -44,6 +45,7 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
 
         <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(18rem,1fr)] lg:gap-12">
           <article>
+            <Reveal>
             <header>
               <span className="inline-flex rounded-full bg-secondary px-3 py-1 text-xs font-bold tracking-wide text-foreground uppercase">
                 Artículo
@@ -68,8 +70,9 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
                 </div>
               </div>
             </header>
+            </Reveal>
 
-            <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-3xl bg-primary/10 shadow-sm">
+            <Reveal className="relative mt-8 aspect-[16/10] overflow-hidden rounded-3xl bg-primary/10 shadow-sm">
               <Image
                 src={urlFor(article.mainImage.image)
                   .width(1200)
@@ -83,7 +86,7 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
                 sizes="(min-width: 1280px) 800px, (min-width: 1024px) 64vw, calc(100vw - 2rem)"
                 className="object-cover"
               />
-            </div>
+            </Reveal>
 
             <div className="mt-10 max-w-3xl">
               <ArticleBody content={article.content} />
@@ -91,7 +94,7 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
           </article>
 
           <aside className="space-y-5 lg:sticky lg:top-6">
-            <div
+            <Reveal
               aria-labelledby="article-info-title"
               className="rounded-3xl border border-border bg-surface p-6"
             >
@@ -143,9 +146,11 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
                   </ResourceDetailInfoRow>
                 )}
               </div>
-            </div>
+            </Reveal>
 
-            <ResourceOrientationCard />
+            <Reveal>
+              <ResourceOrientationCard />
+            </Reveal>
           </aside>
         </div>
 

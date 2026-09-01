@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -12,7 +13,7 @@ export function AboutHero() {
     >
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
-          <div>
+          <Reveal>
             <p className="text-sm font-bold tracking-[0.16em] text-primary">
               QUIÉNES SOMOS
             </p>
@@ -36,9 +37,9 @@ export function AboutHero() {
             >
               Contáctanos
             </LinkButton>
-          </div>
+          </Reveal>
 
-          <div className="relative">
+          <Reveal className="relative">
             <div
               aria-hidden="true"
               className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-secondary/25"
@@ -60,7 +61,7 @@ export function AboutHero() {
               sizes="(min-width: 1280px) 520px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
               className="relative aspect-4/3 w-full rounded-3xl border border-border/60 object-cover object-center shadow-sm"
             />
-          </div>
+          </Reveal>
         </div>
       </Container>
     </Section>

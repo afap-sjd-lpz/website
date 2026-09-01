@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { CommunityIcon, HeartIcon, LockIcon } from "@/components/ui/icons";
@@ -14,7 +15,7 @@ export function CommunityJoin() {
       className="scroll-mt-24 pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-8 lg:pb-8"
     >
       <Container>
-        <div className="grid items-center gap-10 overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:p-10">
+        <Reveal className="grid items-center gap-10 overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:p-10">
           <div>
             <div className="flex items-center gap-4">
               <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-secondary/20 text-secondary">
@@ -93,7 +94,7 @@ export function CommunityJoin() {
               </div>
             )}
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

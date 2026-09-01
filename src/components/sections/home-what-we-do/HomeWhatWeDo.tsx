@@ -1,3 +1,4 @@
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import {
   BookIcon,
   CommunityIcon,
@@ -42,7 +43,7 @@ export function HomeWhatWeDo() {
   return (
     <Section aria-labelledby="home-what-we-do-title" className="bg-surface/60">
       <Container>
-        <div className="max-w-3xl">
+        <Reveal className="max-w-3xl">
           <h2
             id="home-what-we-do-title"
             className="text-3xl font-bold text-foreground sm:text-4xl"
@@ -54,29 +55,28 @@ export function HomeWhatWeDo() {
             instituciones para afrontar colectivamente los desafíos
             relacionados con la salud mental.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {areas.map((area) => (
-            <article
-              key={area.title}
-              className="rounded-3xl border border-border bg-surface p-6"
-            >
-              <span
-                aria-hidden="true"
-                className={`flex size-11 items-center justify-center rounded-full ${area.colorClassName}`}
-              >
-                <area.Icon className="size-5" />
-              </span>
-              <h3 className="mt-5 text-lg font-bold text-foreground">
-                {area.title}
-              </h3>
-              <p className="mt-3 text-sm leading-6 text-muted">
-                {area.description}
-              </p>
-            </article>
+            <StaggerItem key={area.title} className="h-full">
+              <article className="h-full rounded-3xl border border-border bg-surface p-6">
+                <span
+                  aria-hidden="true"
+                  className={`flex size-11 items-center justify-center rounded-full ${area.colorClassName}`}
+                >
+                  <area.Icon className="size-5" />
+                </span>
+                <h3 className="mt-5 text-lg font-bold text-foreground">
+                  {area.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  {area.description}
+                </p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </Section>
   );

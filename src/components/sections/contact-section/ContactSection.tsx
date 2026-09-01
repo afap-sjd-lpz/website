@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/forms/contact-form";
+import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import {
@@ -38,7 +39,8 @@ export function ContactSection({ contactSettings }: ContactSectionProps) {
     >
       <Container>
         <div className={`grid items-start gap-8 ${hasSidebar ? "lg:grid-cols-[2fr_1fr] lg:items-stretch" : ""}`}>
-          <div className="rounded-3xl border border-border bg-surface p-6 shadow-sm sm:p-8">
+          <Reveal>
+            <div className="rounded-3xl border border-border bg-surface p-6 shadow-sm sm:p-8">
             <h2
               id="contact-form-title"
               className="text-3xl font-bold text-foreground"
@@ -56,11 +58,12 @@ export function ContactSection({ contactSettings }: ContactSectionProps) {
               contigo.
             </p>
 
-            <ContactForm />
-          </div>
+              <ContactForm />
+            </div>
+          </Reveal>
 
           {hasSidebar ? <div className="grid gap-6 lg:grid-rows-[auto_1fr]">
-            {hasContactInfo ? <aside
+            {hasContactInfo ? <Reveal><aside
               aria-labelledby="contact-info-title"
               className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 p-6 sm:p-8"
             >
@@ -186,9 +189,9 @@ export function ContactSection({ contactSettings }: ContactSectionProps) {
                   <span className="absolute bottom-36 left-1/2 hidden h-6 w-10 origin-bottom-left rotate-48 rounded-[100%_0] bg-secondary/25 sm:block" />
                 </span>
               </div>
-            </aside> : null}
+            </aside></Reveal> : null}
 
-            {whatsappUrl ? <aside className="rounded-3xl border border-secondary/20 bg-secondary/10 p-6 sm:p-8">
+            {whatsappUrl ? <Reveal><aside className="rounded-3xl border border-secondary/20 bg-secondary/10 p-6 sm:p-8">
               <h2 className="text-xl font-bold text-foreground">
                 ¿Prefieres hablar?
               </h2>
@@ -207,7 +210,7 @@ export function ContactSection({ contactSettings }: ContactSectionProps) {
                 <WhatsAppIcon className="size-5" />
                 Escribir por WhatsApp
               </LinkButton>
-            </aside> : null}
+            </aside></Reveal> : null}
           </div> : null}
         </div>
       </Container>

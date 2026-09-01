@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import {Reveal, Stagger, StaggerItem} from '@/components/motion'
 import {Container} from '@/components/ui/container'
 import {PeopleIcon} from '@/components/ui/icons'
 import {Section} from '@/components/ui/section'
@@ -44,7 +45,7 @@ export function AboutBoard({members, settings}: AboutBoardProps) {
     >
       <Container>
         <div className="rounded-3xl border border-border bg-primary/5 px-6 py-8 sm:px-8 lg:px-10">
-          <div className="max-w-3xl">
+          <Reveal className="max-w-3xl">
             <h2
               id="about-board-title"
               className="text-3xl font-bold text-foreground sm:text-4xl"
@@ -68,14 +69,16 @@ export function AboutBoard({members, settings}: AboutBoardProps) {
               coordinan y representan el trabajo institucional de la
               organización.
             </p>
-          </div>
+          </Reveal>
 
-          <ul className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
+          <Stagger className="mt-8">
+          <ul className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
             {members.map((member, index) => {
               const hasPhoto = Boolean(member.photo?.image.asset)
 
               return (
-                <li
+                <StaggerItem
+                  as="li"
                   key={member._id}
                   className={`flex min-w-0 flex-col items-center px-4 text-center ${
                     index > 0 ? 'lg:border-l lg:border-border' : ''
@@ -116,10 +119,11 @@ export function AboutBoard({members, settings}: AboutBoardProps) {
                   <p className="mt-3 font-semibold leading-6 text-foreground">
                     {member.name}
                   </p>
-                </li>
+                </StaggerItem>
               )
             })}
           </ul>
+          </Stagger>
         </div>
       </Container>
     </Section>

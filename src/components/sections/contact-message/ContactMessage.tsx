@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { Container } from "@/components/ui/container";
 import { HeartIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
@@ -9,7 +10,7 @@ export function ContactMessage() {
       className="pt-8 sm:pt-10 lg:pt-8"
     >
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-12 sm:px-10 sm:py-16 lg:px-16">
+        <Reveal className="relative overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-12 sm:px-10 sm:py-16 lg:px-16">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
@@ -37,7 +38,7 @@ export function ContactMessage() {
               comunidad más informada, empática y solidaria.
             </p>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { Container } from "@/components/ui/container";
 import { PeopleIcon, ShieldIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
@@ -10,7 +11,7 @@ export function AboutHistory() {
     >
       <Container>
         <div className="grid items-start gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14">
-          <div>
+          <Reveal>
             <div className="flex items-center gap-4">
               <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-secondary/15 text-secondary">
                 <PeopleIcon className="size-6" />
@@ -52,9 +53,10 @@ export function AboutHistory() {
                 nivel nacional.
               </p>
             </div>
-          </div>
+          </Reveal>
 
-          <aside className="relative self-start overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 p-7 sm:p-9">
+          <Reveal className="self-start">
+            <aside className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 p-7 sm:p-9">
             <div className="relative z-10">
               <span className="flex size-12 items-center justify-center rounded-full bg-primary/20 text-primary">
                 <ShieldIcon className="size-6" />
@@ -98,7 +100,8 @@ export function AboutHistory() {
                 opacity=".22"
               />
             </svg>
-          </aside>
+            </aside>
+          </Reveal>
         </div>
       </Container>
     </Section>

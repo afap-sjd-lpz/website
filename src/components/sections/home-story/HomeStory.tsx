@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -6,7 +7,7 @@ export function HomeStory() {
   return (
     <Section aria-labelledby="home-story-title">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
+        <Reveal className="relative overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -top-16 -right-16 size-44 rounded-full bg-primary/10"
@@ -36,7 +37,7 @@ export function HomeStory() {
               Conoce nuestra historia
             </LinkButton>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

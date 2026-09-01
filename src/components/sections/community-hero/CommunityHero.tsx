@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { CommunityIcon } from "@/components/ui/icons";
@@ -14,7 +15,7 @@ export function CommunityHero() {
     >
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
-          <div>
+          <Reveal>
             <p className="text-sm font-bold tracking-[0.16em] text-primary">
               COMUNIDAD Y RECURSOS
             </p>
@@ -39,9 +40,9 @@ export function CommunityHero() {
               <CommunityIcon className="size-5" />
               Conoce cómo participar
             </LinkButton>
-          </div>
+          </Reveal>
 
-          <div className="relative aspect-4/3">
+          <Reveal className="relative aspect-4/3">
             {communityConfig.heroImageSrc ? (
               <Image
                 src={communityConfig.heroImageSrc}
@@ -65,7 +66,7 @@ export function CommunityHero() {
                 </span>
               </div>
             )}
-          </div>
+          </Reveal>
         </div>
       </Container>
     </Section>

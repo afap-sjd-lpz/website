@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { Container } from "@/components/ui/container";
 import { CalendarIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
@@ -10,7 +11,7 @@ export function CommunityActivities() {
       className="pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-8 lg:pb-8"
     >
       <Container>
-        <div className="grid gap-8 rounded-3xl border border-primary/20 bg-primary/10 p-6 sm:p-8 lg:grid-cols-[0.34fr_0.66fr] lg:gap-10 lg:p-10">
+        <Reveal className="grid gap-8 rounded-3xl border border-primary/20 bg-primary/10 p-6 sm:p-8 lg:grid-cols-[0.34fr_0.66fr] lg:gap-10 lg:p-10">
           <div>
             <span className="flex size-12 items-center justify-center rounded-full bg-primary/20 text-primary">
               <CalendarIcon className="size-6" />
@@ -62,7 +63,7 @@ export function CommunityActivities() {
               </div>
             )}
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

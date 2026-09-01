@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/motion";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 
@@ -11,7 +12,7 @@ export function ResourceLibraryHero() {
     >
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          <div>
+          <Reveal>
             <p className="text-sm font-bold tracking-[0.16em] text-primary">
               RECURSOS
             </p>
@@ -26,9 +27,9 @@ export function ResourceLibraryHero() {
               y acompañar a personas y familias en temas relacionados con la
               salud mental, los trastornos mentales y la discapacidad mental.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="relative aspect-3/2 w-full">
+          <Reveal className="relative aspect-3/2 w-full">
             <Image
               src="/images/heroresources.png"
               alt=""
@@ -37,7 +38,7 @@ export function ResourceLibraryHero() {
               sizes="(min-width: 1280px) 520px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
               className="object-contain object-center"
             />
-          </div>
+          </Reveal>
         </div>
       </Container>
     </Section>

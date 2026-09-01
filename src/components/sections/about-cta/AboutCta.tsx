@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { HeartIcon } from "@/components/ui/icons";
@@ -10,7 +11,7 @@ export function AboutCta() {
       className="bg-surface pt-6 sm:pt-8 lg:pt-8"
     >
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-9 sm:px-10 sm:py-11 lg:px-12">
+        <Reveal className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-9 sm:px-10 sm:py-11 lg:px-12">
           <div className="relative z-10 max-w-3xl lg:max-w-[62%]">
             <h2
               id="about-cta-title"
@@ -50,7 +51,7 @@ export function AboutCta() {
             <span className="absolute top-16 right-6 size-3 rounded-full bg-accent/20" />
             <span className="absolute top-10 right-8 size-32 rounded-full bg-primary/15" />
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

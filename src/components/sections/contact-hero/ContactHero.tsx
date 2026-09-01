@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { Container } from "@/components/ui/container";
 import {
   CommunityIcon,
@@ -40,7 +41,7 @@ export function ContactHero() {
     >
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-14 lg:gap-y-10">
-          <div>
+          <Reveal>
             <p className="mb-4 text-sm font-bold tracking-[0.16em] text-accent">
               CONTACTO
             </p>
@@ -57,21 +58,23 @@ export function ContactHero() {
               más sobre nuestra asociación, escríbenos. Te
               responderemos con la mayor prontitud posible.
             </p>
-          </div>
+          </Reveal>
 
-          <Image
-            src="/images/herocontact.png"
-            alt="Ilustración de una mujer comunicándose desde su teléfono"
-            width={1448}
-            height={1086}
-            preload
-            sizes="(min-width: 1280px) 520px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
-            className="aspect-4/3 w-full rounded-3xl object-cover object-center lg:col-start-2 lg:row-span-2 lg:row-start-1"
-          />
+          <Reveal className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <Image
+              src="/images/herocontact.png"
+              alt="Ilustración de una mujer comunicándose desde su teléfono"
+              width={1448}
+              height={1086}
+              preload
+              sizes="(min-width: 1280px) 520px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
+              className="aspect-4/3 w-full rounded-3xl object-cover object-center"
+            />
+          </Reveal>
 
-          <div className="grid gap-5 lg:col-start-1 lg:row-start-2 lg:grid-cols-3">
+          <Stagger className="grid gap-5 lg:col-start-1 lg:row-start-2 lg:grid-cols-3">
             {contactConcepts.map((concept) => (
-              <div
+              <StaggerItem
                 key={concept.title}
                 className="flex items-start gap-4 lg:flex-col lg:gap-3"
               >
@@ -92,9 +95,9 @@ export function ContactHero() {
                     {concept.description}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </Container>
     </Section>

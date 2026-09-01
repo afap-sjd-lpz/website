@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import {Reveal} from '@/components/motion'
 import {VideoFallback} from '@/components/sections/resource-library/ResourceCard'
 import {
   formatResourceDate,
@@ -46,6 +47,7 @@ export function VideoDetail({video, relatedResources}: VideoDetailProps) {
 
         <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(18rem,1fr)] lg:gap-12">
           <article>
+            <Reveal>
             <header>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-wide text-foreground uppercase">
@@ -63,8 +65,9 @@ export function VideoDetail({video, relatedResources}: VideoDetailProps) {
                 {video.description}
               </p>
             </header>
+            </Reveal>
 
-            <div className="relative mt-8 aspect-video overflow-hidden rounded-3xl bg-primary/10 shadow-sm">
+            <Reveal className="relative mt-8 aspect-video overflow-hidden rounded-3xl bg-primary/10 shadow-sm">
               {videoId ? (
                 <iframe
                   src={`https://www.youtube-nocookie.com/embed/${videoId}`}
@@ -78,11 +81,11 @@ export function VideoDetail({video, relatedResources}: VideoDetailProps) {
               ) : (
                 <VideoFallback />
               )}
-            </div>
+            </Reveal>
           </article>
 
           <aside className="space-y-5 lg:sticky lg:top-6">
-            <div
+            <Reveal
               aria-labelledby="video-info-title"
               className="rounded-3xl border border-border bg-surface p-6"
             >
@@ -117,9 +120,11 @@ export function VideoDetail({video, relatedResources}: VideoDetailProps) {
                   </time>
                 </ResourceDetailInfoRow>
               </div>
-            </div>
+            </Reveal>
 
-            <ResourceOrientationCard />
+            <Reveal>
+              <ResourceOrientationCard />
+            </Reveal>
           </aside>
         </div>
 

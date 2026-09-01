@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import {Reveal, Stagger, StaggerItem} from '@/components/motion'
 import {ResourceMedia} from '@/components/sections/resource-library/ResourceCard'
 import {BookIcon} from '@/components/ui/icons'
 import type {RELATED_RESOURCES_QUERY_RESULT} from '@/sanity/sanity.types'
@@ -18,7 +19,7 @@ export function RelatedResources({resources}: RelatedResourcesProps) {
       aria-labelledby="related-resources-title"
       className="mt-14 rounded-3xl border border-primary/20 bg-primary/10 p-5 sm:p-7"
     >
-      <div className="flex items-center gap-3 text-primary">
+      <Reveal className="flex items-center gap-3 text-primary">
         <BookIcon className="size-6" />
         <h2
           id="related-resources-title"
@@ -26,17 +27,15 @@ export function RelatedResources({resources}: RelatedResourcesProps) {
         >
           También te podría interesar
         </h2>
-      </div>
+      </Reveal>
 
-      <div className="mt-6 grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Stagger className="mt-6 grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {resources.map((resource) => {
           const href = getResourceDetailHref(resource)
 
           return (
-            <article
-              key={resource._id}
-              className="relative overflow-hidden rounded-2xl border border-border bg-surface"
-            >
+            <StaggerItem key={resource._id} className="h-full">
+            <article className="relative h-full overflow-hidden rounded-2xl border border-border bg-surface">
               <ResourceMedia resource={resource} />
               <div className="p-4">
                 <h3 className="line-clamp-2 font-bold leading-6 text-foreground">
@@ -55,9 +54,10 @@ export function RelatedResources({resources}: RelatedResourcesProps) {
                 )}
               </div>
             </article>
+            </StaggerItem>
           )
         })}
-      </div>
+      </Stagger>
     </section>
   )
 }

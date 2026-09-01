@@ -1,3 +1,4 @@
+import { Stagger, StaggerItem } from "@/components/motion";
 import { Container } from "@/components/ui/container";
 import { EyeIcon, TargetIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
@@ -26,12 +27,10 @@ export function AboutMission() {
       className="bg-surface pt-6 pb-4 sm:pt-8 sm:pb-5 lg:pt-10 lg:pb-5"
     >
       <Container>
-        <div className="grid items-stretch gap-6 md:grid-cols-2">
+        <Stagger className="grid items-stretch gap-6 md:grid-cols-2">
           {statements.map((statement) => (
-            <article
-              key={statement.title}
-              className={`h-full rounded-3xl border p-7 sm:p-9 ${statement.className}`}
-            >
+            <StaggerItem key={statement.title} className="h-full">
+              <article className={`h-full rounded-3xl border p-7 sm:p-9 ${statement.className}`}>
               <div className="flex items-center gap-4">
                 <span
                   aria-hidden="true"
@@ -46,9 +45,10 @@ export function AboutMission() {
               <p className="mt-6 text-base leading-7 text-muted sm:text-lg sm:leading-8">
                 {statement.text}
               </p>
-            </article>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </Section>
   );
