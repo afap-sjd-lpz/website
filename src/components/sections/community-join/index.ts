@@ -1,1 +1,0 @@
-export { CommunityJoin } from "./CommunityJoin";

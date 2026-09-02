@@ -35,6 +35,9 @@ El sitio queda disponible en [http://localhost:3000](http://localhost:3000) y el
 Copia `.env.example` como `.env.local` y completa los valores correspondientes. `.env.local` no debe versionarse.
 
 ```dotenv
+# Sitio público
+SITE_URL=
+
 # Resend
 RESEND_API_KEY=
 CONTACT_FROM_EMAIL=
@@ -50,6 +53,8 @@ NEXT_PUBLIC_SANITY_DATASET=
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_API_VERSION=
 ```
+
+`SITE_URL` debe contener el origen canónico del sitio, sin rutas adicionales. En desarrollo se usa `http://localhost:3000` cuando la variable no está definida.
 
 `NEXT_PUBLIC_SANITY_API_VERSION` es opcional: el proyecto utiliza una versión estable definida en `src/sanity/env.ts` cuando no se proporciona. Ninguna clave privada debe usar el prefijo `NEXT_PUBLIC_`.
 

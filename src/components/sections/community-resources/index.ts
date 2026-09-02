@@ -1,1 +1,0 @@
-export { CommunityResources } from "./CommunityResources";

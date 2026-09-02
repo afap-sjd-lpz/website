@@ -15,5 +15,6 @@ export type {
   ResourceSort,
   ResourceType,
 } from './resources'
+export {SITEMAP_RESOURCES_QUERY} from './sitemap'
 export {TOPICS_QUERY} from './topics'
 export {VIDEO_BY_SLUG_QUERY} from './videos'

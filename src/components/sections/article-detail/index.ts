@@ -1,1 +1,0 @@
-export {ArticleDetail} from './ArticleDetail'

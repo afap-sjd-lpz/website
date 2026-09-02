@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {cache} from 'react'
 
-import {MaterialDetail} from '@/components/sections/material-detail'
+import {MaterialDetail} from '@/components/sections/resources/detail/MaterialDetail'
 import {client} from '@/sanity/lib/client'
 import {
   MATERIAL_BY_SLUG_QUERY,
@@ -38,6 +38,9 @@ export async function generateMetadata({
   return {
     title: material.seo?.title ?? material.title,
     description: material.seo?.description ?? material.description,
+    alternates: {
+      canonical: `/recursos/materiales/${material.slug}`,
+    },
   }
 }
 

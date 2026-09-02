@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {cache} from 'react'
 
-import {VideoDetail} from '@/components/sections/video-detail'
+import {VideoDetail} from '@/components/sections/resources/detail/VideoDetail'
 import {client} from '@/sanity/lib/client'
 import {
   RELATED_RESOURCES_QUERY,
@@ -38,6 +38,9 @@ export async function generateMetadata({
   return {
     title: video.seo?.title ?? video.title,
     description: video.seo?.description ?? video.description,
+    alternates: {
+      canonical: `/recursos/videos/${video.slug}`,
+    },
   }
 }
 

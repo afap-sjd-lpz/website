@@ -1,1 +1,0 @@
-export { HomeWhatWeDo } from "./HomeWhatWeDo";

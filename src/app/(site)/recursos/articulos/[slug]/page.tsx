@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {cache} from 'react'
 
-import {ArticleDetail} from '@/components/sections/article-detail'
+import {ArticleDetail} from '@/components/sections/resources/detail/ArticleDetail'
 import {client} from '@/sanity/lib/client'
 import {
   ARTICLE_BY_SLUG_QUERY,
@@ -38,6 +38,9 @@ export async function generateMetadata({
   return {
     title: article.seo?.title ?? article.title,
     description: article.seo?.description ?? article.summary,
+    alternates: {
+      canonical: `/recursos/articulos/${article.slug}`,
+    },
   }
 }
 

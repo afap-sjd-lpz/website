@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 
-import { ContactHero } from "@/components/sections/contact-hero";
-import { ContactMessage } from "@/components/sections/contact-message";
-import { ContactSection } from "@/components/sections/contact-section";
+import { ContactHero } from "@/components/sections/contact/ContactHero";
+import { ContactMessage } from "@/components/sections/contact/ContactMessage";
+import { ContactSection } from "@/components/sections/contact/ContactSection";
 import { getContactSettings } from "@/sanity/lib/institutional";
 
 export const metadata: Metadata = {
   title: "Contacto | AFAP",
   description:
     "Comunícate con AFAP para solicitar información, orientación o conocer cómo participar en nuestra comunidad.",
+  alternates: {
+    canonical: "/contacto",
+  },
 };
 
 export default async function ContactPage() {

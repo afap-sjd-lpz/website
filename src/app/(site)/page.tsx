@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 
-import { HomeHero } from "@/components/sections/home-hero";
-import { HomeStory } from "@/components/sections/home-story";
-import { HomeWhatWeDo } from "@/components/sections/home-what-we-do";
+import { HomeHero } from "@/components/sections/home/HomeHero";
+import { HomeStory } from "@/components/sections/home/HomeStory";
+import { HomeWhatWeDo } from "@/components/sections/home/HomeWhatWeDo";
 
 export const metadata: Metadata = {
   title: "Inicio | AFAP",
   description:
     "Conoce AFAP, una comunidad de familias y personas unidas por la salud mental, la inclusión y los derechos en Bolivia.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function Home() {
