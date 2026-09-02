@@ -11,7 +11,3 @@ export {
   formatResourceDate,
   getResourceDetailHref,
 } from './resource-detail.utils'
-export {
-  getYouTubeThumbnailUrl,
-  getYouTubeVideoId,
-} from './youtube.utils'

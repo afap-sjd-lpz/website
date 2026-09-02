@@ -2,12 +2,12 @@ import {Reveal} from '@/components/motion'
 import {VideoFallback} from '@/components/sections/resources/ResourceMedia'
 import {
   formatResourceDate,
-  getYouTubeVideoId,
   ResourceDetailInfoRow,
   ResourceDetailShell,
   ResourceDetailTopics,
 } from '@/components/sections/resources/detail'
 import {CalendarIcon, CommunityIcon, PlayIcon} from '@/components/ui/icons'
+import {getYouTubeVideoId} from '@/lib/youtube/youtube.utils'
 import type {
   RELATED_RESOURCES_QUERY_RESULT,
   VIDEO_BY_SLUG_QUERY_RESULT,

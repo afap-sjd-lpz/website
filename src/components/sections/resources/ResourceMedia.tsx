@@ -1,10 +1,8 @@
 import Image from 'next/image'
 
-import {
-  getYouTubeThumbnailUrl,
-  getYouTubeVideoId,
-} from '@/components/sections/resources/detail/youtube.utils'
+import {getYouTubeThumbnailUrl} from '@/components/sections/resources/detail/youtube.utils'
 import {BookIcon, HeartIcon, PlayIcon} from '@/components/ui/icons'
+import {getYouTubeVideoId} from '@/lib/youtube/youtube.utils'
 import {urlFor} from '@/sanity/lib/image'
 import type {RESOURCES_QUERY_RESULT} from '@/sanity/sanity.types'
 
