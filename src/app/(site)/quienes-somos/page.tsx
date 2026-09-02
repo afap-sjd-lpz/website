@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Quiénes somos | AFAP",
   description:
     "Conoce el origen, propósito y alcance nacional creciente de AFAP, una asociación independiente de familias y personas unidas por la salud mental.",
+  alternates: {
+    canonical: "/quienes-somos",
+  },
 };
 
 export default async function AboutPage() {

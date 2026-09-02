@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Contacto | AFAP",
   description:
     "Comunícate con AFAP para solicitar información, orientación o conocer cómo participar en nuestra comunidad.",
+  alternates: {
+    canonical: "/contacto",
+  },
 };
 
 export default async function ContactPage() {

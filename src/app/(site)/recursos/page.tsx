@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   title: 'Recursos | AFAP',
   description:
     'Consulta artículos, materiales y videos de AFAP para la orientación, la información y el acompañamiento en salud mental.',
+  alternates: {
+    canonical: '/recursos',
+  },
 }
 
 function normalizeSearchParams(searchParams: Record<string, SearchParamValue>) {

@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "Política de Privacidad | AFAP",
   description:
     "Política de Privacidad del sitio web de AFAP San Juan de Dios - La Paz.",
+  alternates: {
+    canonical: "/politica-de-privacidad",
+  },
 };
 
 interface PolicySectionProps {

@@ -38,6 +38,9 @@ export async function generateMetadata({
   return {
     title: material.seo?.title ?? material.title,
     description: material.seo?.description ?? material.description,
+    alternates: {
+      canonical: `/recursos/materiales/${material.slug}`,
+    },
   }
 }
 

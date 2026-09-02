@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Comunidad y recursos | AFAP",
   description:
     "Conoce las actividades, formas de participación y recursos que AFAP prepara para familias y personas comprometidas con la salud mental.",
+  alternates: {
+    canonical: "/comunidad",
+  },
 };
 
 export default function CommunityPage() {

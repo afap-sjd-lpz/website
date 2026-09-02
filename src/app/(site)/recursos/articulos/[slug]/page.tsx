@@ -38,6 +38,9 @@ export async function generateMetadata({
   return {
     title: article.seo?.title ?? article.title,
     description: article.seo?.description ?? article.summary,
+    alternates: {
+      canonical: `/recursos/articulos/${article.slug}`,
+    },
   }
 }
 

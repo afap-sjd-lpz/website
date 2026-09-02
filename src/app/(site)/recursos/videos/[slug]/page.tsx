@@ -38,6 +38,9 @@ export async function generateMetadata({
   return {
     title: video.seo?.title ?? video.title,
     description: video.seo?.description ?? video.description,
+    alternates: {
+      canonical: `/recursos/videos/${video.slug}`,
+    },
   }
 }
 

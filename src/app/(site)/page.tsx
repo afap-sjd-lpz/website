@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Inicio | AFAP",
   description:
     "Conoce AFAP, una comunidad de familias y personas unidas por la salud mental, la inclusión y los derechos en Bolivia.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function Home() {
