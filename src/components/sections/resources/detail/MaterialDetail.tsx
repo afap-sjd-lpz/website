@@ -2,11 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import {Reveal} from '@/components/motion'
-import {MaterialFallback} from '@/components/sections/resources/library/ResourceCard'
+import {MaterialFallback} from '@/components/sections/resources/ResourceMedia'
 import {
   formatResourceDate,
   RelatedResources,
   ResourceDetailInfoRow,
+  ResourceDetailTopics,
   ResourceOrientationCard,
 } from '@/components/sections/resources/detail'
 import {LinkButton} from '@/components/ui/button'
@@ -106,16 +107,7 @@ export function MaterialDetail({
                 </ResourceDetailInfoRow>
 
                 <ResourceDetailInfoRow Icon={CommunityIcon} label="Temáticas">
-                  <ul className="flex flex-wrap gap-2">
-                    {material.topics.map((topic) => (
-                      <li
-                        key={topic._id}
-                        className="rounded-full bg-secondary/10 px-3 py-1 text-xs"
-                      >
-                        {topic.name}
-                      </li>
-                    ))}
-                  </ul>
+                  <ResourceDetailTopics topics={material.topics} />
                 </ResourceDetailInfoRow>
 
                 <ResourceDetailInfoRow Icon={CalendarIcon} label="Publicado">

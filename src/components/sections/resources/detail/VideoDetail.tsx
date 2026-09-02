@@ -1,12 +1,13 @@
 import Link from 'next/link'
 
 import {Reveal} from '@/components/motion'
-import {VideoFallback} from '@/components/sections/resources/library/ResourceCard'
+import {VideoFallback} from '@/components/sections/resources/ResourceMedia'
 import {
   formatResourceDate,
   getYouTubeVideoId,
   RelatedResources,
   ResourceDetailInfoRow,
+  ResourceDetailTopics,
   ResourceOrientationCard,
 } from '@/components/sections/resources/detail'
 import {Container} from '@/components/ui/container'
@@ -102,16 +103,7 @@ export function VideoDetail({video, relatedResources}: VideoDetailProps) {
                 </ResourceDetailInfoRow>
 
                 <ResourceDetailInfoRow Icon={CommunityIcon} label="Temáticas">
-                  <ul className="flex flex-wrap gap-2">
-                    {video.topics.map((topic) => (
-                      <li
-                        key={topic._id}
-                        className="rounded-full bg-secondary/10 px-3 py-1 text-xs"
-                      >
-                        {topic.name}
-                      </li>
-                    ))}
-                  </ul>
+                  <ResourceDetailTopics topics={video.topics} />
                 </ResourceDetailInfoRow>
 
                 <ResourceDetailInfoRow Icon={CalendarIcon} label="Publicado">

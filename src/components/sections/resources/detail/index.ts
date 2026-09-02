@@ -2,6 +2,8 @@ export {RelatedResources} from './RelatedResources'
 export type {RelatedResourcesProps} from './RelatedResources'
 export {ResourceDetailInfoRow} from './ResourceDetailInfoRow'
 export type {ResourceDetailInfoRowProps} from './ResourceDetailInfoRow'
+export {ResourceDetailTopics} from './ResourceDetailTopics'
+export type {ResourceDetailTopicsProps} from './ResourceDetailTopics'
 export {ResourceOrientationCard} from './ResourceOrientationCard'
 export {
   formatResourceDate,

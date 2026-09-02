@@ -6,6 +6,7 @@ import {
   formatResourceDate,
   RelatedResources,
   ResourceDetailInfoRow,
+  ResourceDetailTopics,
   ResourceOrientationCard,
 } from '@/components/sections/resources/detail'
 import {Container} from '@/components/ui/container'
@@ -111,16 +112,7 @@ export function ArticleDetail({article, relatedResources}: ArticleDetailProps) {
                 </ResourceDetailInfoRow>
 
                 <ResourceDetailInfoRow Icon={CommunityIcon} label="Temáticas">
-                  <ul className="flex flex-wrap gap-2">
-                    {article.topics.map((topic) => (
-                      <li
-                        key={topic._id}
-                        className="rounded-full bg-secondary/10 px-3 py-1 text-xs"
-                      >
-                        {topic.name}
-                      </li>
-                    ))}
-                  </ul>
+                  <ResourceDetailTopics topics={article.topics} />
                 </ResourceDetailInfoRow>
 
                 <ResourceDetailInfoRow Icon={CalendarIcon} label="Publicado">

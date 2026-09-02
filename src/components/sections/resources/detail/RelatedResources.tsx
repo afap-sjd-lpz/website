@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import {Reveal, Stagger, StaggerItem} from '@/components/motion'
-import {ResourceMedia} from '@/components/sections/resources/library/ResourceCard'
+import {ResourceMedia} from '@/components/sections/resources/ResourceMedia'
 import {BookIcon} from '@/components/ui/icons'
 import type {RELATED_RESOURCES_QUERY_RESULT} from '@/sanity/sanity.types'
 
