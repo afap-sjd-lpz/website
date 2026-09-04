@@ -5,9 +5,9 @@ import { HomeStory } from "@/components/sections/home/HomeStory";
 import { HomeWhatWeDo } from "@/components/sections/home/HomeWhatWeDo";
 
 export const metadata: Metadata = {
-  title: "Inicio | AFAP",
+  title: "AFAP Bolivia | Unidos por la salud mental",
   description:
-    "Conoce AFAP, una comunidad de familias y personas unidas por la salud mental, la inclusión y los derechos en Bolivia.",
+    "AFAP reúne a familias, amigos y personas comprometidas con la salud mental en Bolivia, promoviendo apoyo, orientación, inclusión y defensa de derechos.",
   alternates: {
     canonical: "/",
   },
