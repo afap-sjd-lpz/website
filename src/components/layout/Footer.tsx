@@ -16,6 +16,7 @@ import {
   YouTubeIcon,
   type IconProps,
 } from "@/components/ui/icons";
+import { TooltipLink } from "@/components/ui/tooltip";
 import { navigationItems } from "@/config/navigation.config";
 import {
   createPhoneHref,
@@ -49,15 +50,16 @@ function SocialLink({
   opensInNewTab = false,
 }: SocialLinkProps) {
   return (
-    <a
+    <TooltipLink
       href={href}
+      label={label}
       aria-label={label}
       target={opensInNewTab ? "_blank" : undefined}
       rel={opensInNewTab ? "noopener noreferrer" : undefined}
       className="inline-flex size-11 items-center justify-center rounded-xl border border-primary/40 text-primary transition-colors hover:border-primary hover:bg-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       {children}
-    </a>
+    </TooltipLink>
   );
 }
 
@@ -77,7 +79,7 @@ export function Footer({ contactSettings }: FooterProps) {
           <div
             className={`grid gap-10 text-center md:text-start ${
               socialLinks.length > 0
-                ? "md:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-10"
+                ? "md:grid-cols-2 md:gap-12 lg:grid-cols-[1.5fr_0.85fr_1.15fr_1.1fr] lg:gap-10"
                 : "md:grid-cols-3 md:gap-12 lg:gap-20"
             }`}
           >
@@ -156,27 +158,27 @@ export function Footer({ contactSettings }: FooterProps) {
                             {phoneHref || phoneWhatsappUrl ? (
                               <span className="flex shrink-0 gap-1">
                                 {phoneHref ? (
-                                  <a
+                                  <TooltipLink
                                     href={phoneHref}
+                                    label={`Llamar a ${phone.label}`}
                                     aria-label={`Llamar a ${phone.label}`}
-                                    title={`Llamar a ${phone.label}`}
                                     className="inline-flex size-7 items-center justify-center rounded-lg text-primary transition-colors hover:bg-primary/10"
                                   >
                                     <PhoneIcon className="size-4" />
-                                  </a>
+                                  </TooltipLink>
                                 ) : null}
 
                                 {phoneWhatsappUrl ? (
-                                  <a
+                                  <TooltipLink
                                     href={phoneWhatsappUrl}
+                                    label={`Escribir por WhatsApp a ${phone.label}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={`Escribir por WhatsApp a ${phone.label}`}
-                                    title={`Escribir por WhatsApp a ${phone.label}`}
                                     className="inline-flex size-7 items-center justify-center rounded-lg text-secondary transition-colors hover:bg-secondary/10"
                                   >
                                     <WhatsAppIcon className="size-4" />
-                                  </a>
+                                  </TooltipLink>
                                 ) : null}
                               </span>
                             ) : null}
