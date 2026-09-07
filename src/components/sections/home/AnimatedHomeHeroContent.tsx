@@ -53,9 +53,10 @@ export function AnimatedHomeHeroContent() {
         variants={copyVariants}
         className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl sm:leading-9"
       >
-        En AFAP, familias, amigos y personas comprometidas con la salud mental
-        nos unimos para orientarnos, apoyarnos, defender derechos y contribuir a
-        una sociedad más informada e inclusiva.
+        AFAP es una asociación sin fines de lucro de Bolivia que reúne a
+        familias, amigos y personas comprometidas con la salud mental, la
+        inclusión y la defensa de derechos. Desde esta comunidad nos orientamos,
+        nos apoyamos y contribuimos a una sociedad más informada e inclusiva.
       </motion.p>
 
       <motion.div

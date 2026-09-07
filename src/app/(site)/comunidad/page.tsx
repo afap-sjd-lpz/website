@@ -6,7 +6,7 @@ import { CommunityJoin } from "@/components/sections/community/CommunityJoin";
 import { CommunityResources } from "@/components/sections/community/CommunityResources";
 
 export const metadata: Metadata = {
-  title: "Comunidad y recursos | AFAP",
+  title: "Comunidad | AFAP",
   description:
     "Conoce las actividades, formas de participación y recursos que AFAP prepara para familias y personas comprometidas con la salud mental.",
   alternates: {

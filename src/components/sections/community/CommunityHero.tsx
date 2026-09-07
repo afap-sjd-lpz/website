@@ -17,19 +17,18 @@ export function CommunityHero() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <Reveal>
             <p className="text-sm font-bold tracking-[0.16em] text-primary">
-              COMUNIDAD Y RECURSOS
+              COMUNIDAD
             </p>
             <h1
               id="community-hero-title"
               className="mt-4 max-w-3xl text-4xl leading-tight font-bold text-foreground sm:text-5xl"
             >
-              Construimos comunidad, compartimos recursos
+              Juntos construimos comunidad
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-muted sm:text-xl sm:leading-9">
-              En AFAP encontrarás actividades, espacios de participación y
-              materiales de información que orientan y fortalecen el
-              conocimiento sobre la salud mental, los trastornos mentales y la
-              discapacidad mental.
+              En AFAP encontrarás actividades y espacios de participación que
+              orientan, acompañan y fortalecen el conocimiento sobre la salud
+              mental, los trastornos mentales y la discapacidad mental.
             </p>
 
             <LinkButton

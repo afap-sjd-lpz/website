@@ -4,6 +4,7 @@ import Link from "next/link";
 export interface BrandProps {
   imagePriority?: boolean;
   showText?: boolean;
+  variant?: "compact" | "full";
 }
 
 /**
@@ -13,7 +14,27 @@ export interface BrandProps {
 export function Brand({
   imagePriority = false,
   showText = true,
+  variant = "compact",
 }: BrandProps) {
+  if (variant === "full") {
+    return (
+      <Link
+        href="/"
+        aria-label="Ir a la página de inicio"
+        className="inline-flex"
+      >
+        <Image
+          src="/images/brand/afap-brand.svg"
+          alt="AFAP"
+          width={1600}
+          height={600}
+          priority={imagePriority}
+          className="h-auto w-full max-w-72 object-contain"
+        />
+      </Link>
+    );
+  }
+
   return (
     <Link
       href="/"

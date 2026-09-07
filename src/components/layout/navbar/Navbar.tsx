@@ -25,7 +25,9 @@ export function Navbar({ contactSettings }: NavbarProps) {
     <header className="border-b border-border bg-surface">
       <Container>
         <div className="flex h-20 items-center justify-between">
-          <Brand imagePriority />
+          <div className="w-40 sm:w-48">
+            <Brand imagePriority variant="full" />
+          </div>
 
           <DesktopNavigation />
 
