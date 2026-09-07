@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Reveal } from "@/components/motion";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -7,12 +9,8 @@ export function HomeStory() {
   return (
     <Section aria-labelledby="home-story-title">
       <Container>
-        <Reveal className="relative overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -top-16 -right-16 size-44 rounded-full bg-primary/10"
-          />
-          <div className="relative max-w-3xl">
+        <Reveal className="grid items-center gap-8 overflow-hidden rounded-3xl border border-secondary/20 bg-secondary/10 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-[0.65fr_0.35fr] lg:gap-12 lg:px-14">
+          <div>
             <p className="text-sm font-bold tracking-[0.16em] text-primary">
               NUESTRA HISTORIA CONTINÚA
             </p>
@@ -36,6 +34,20 @@ export function HomeStory() {
             >
               Conoce nuestra historia
             </LinkButton>
+          </div>
+
+          <div
+            aria-hidden="true"
+            className="mx-auto w-full max-w-sm lg:max-w-none"
+          >
+            <Image
+              src="/images/mapa_bolivia.png"
+              alt=""
+              width={1536}
+              height={1024}
+              sizes="(min-width: 1024px) 35vw, 384px"
+              className="h-auto w-full object-contain"
+            />
           </div>
         </Reveal>
       </Container>
