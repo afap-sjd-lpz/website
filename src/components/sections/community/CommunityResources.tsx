@@ -21,7 +21,7 @@ export function CommunityResources() {
             className="absolute right-36 -bottom-10 size-24 rounded-full bg-accent/10"
           />
 
-          <div className="relative flex max-w-3xl items-start gap-5">
+          <div className="relative flex max-w-4xl items-start gap-5">
             <span
               aria-hidden="true"
               className="flex size-14 shrink-0 items-center justify-center rounded-full bg-surface text-primary"

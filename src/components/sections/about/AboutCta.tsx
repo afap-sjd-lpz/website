@@ -12,7 +12,7 @@ export function AboutCta() {
     >
       <Container>
         <Reveal className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 px-6 py-9 sm:px-10 sm:py-11 lg:px-12">
-          <div className="relative z-10 max-w-3xl lg:max-w-[62%]">
+          <div className="relative z-10 max-w-3xl lg:max-w-[70%]">
             <h2
               id="about-cta-title"
               className="text-3xl font-bold text-foreground sm:text-4xl"

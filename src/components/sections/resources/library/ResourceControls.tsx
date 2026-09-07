@@ -78,7 +78,7 @@ function FilterPanel({
   return (
     <div>
       <nav aria-label="Filtrar por temática">
-        <h2 className="text-sm font-bold tracking-[0.12em] text-primary uppercase">
+        <h2 className="font-sans text-sm font-bold tracking-[0.12em] text-primary uppercase">
           Temáticas
         </h2>
         <div className="mt-4 space-y-1">
@@ -103,7 +103,7 @@ function FilterPanel({
       <div className="my-6 border-t border-border" />
 
       <nav aria-label="Filtrar por formato">
-        <h2 className="text-sm font-bold tracking-[0.12em] text-primary uppercase">
+        <h2 className="font-sans text-sm font-bold tracking-[0.12em] text-primary uppercase">
           Formatos
         </h2>
         <div className="mt-4 space-y-1">

@@ -80,18 +80,18 @@ export function AboutBoard({members, settings}: AboutBoardProps) {
                 <StaggerItem
                   as="li"
                   key={member._id}
-                  className={`flex min-w-0 flex-col items-center px-4 text-center ${
+                  className={`flex min-w-0 flex-col items-center px-4 text-center lg:px-1 xl:px-3 ${
                     index > 0 ? 'lg:border-l lg:border-border' : ''
                   }`}
                 >
-                  <div className="flex min-h-12 items-start justify-center gap-2 text-foreground">
+                  <div className="flex min-h-12 items-start justify-center gap-2 text-foreground lg:gap-1.5 xl:gap-2">
                     <span
                       aria-hidden="true"
                       className="flex size-9 shrink-0 items-center justify-center rounded-full bg-secondary/15 text-secondary"
                     >
                       <PeopleIcon className="size-5" />
                     </span>
-                    <h3 className="pt-1.5 text-sm font-bold leading-5">
+                    <h3 className="pt-1.5 text-sm font-bold leading-5 xl:whitespace-nowrap">
                       {roleLabels[member.role]}
                     </h3>
                   </div>

@@ -13,6 +13,14 @@ const nunitoSans = localFont({
   display: "swap",
 });
 
+const quicksand = localFont({
+  src: "./fonts/quicksand-variable.woff2",
+  variable: "--font-quicksand",
+  weight: "300 700",
+  style: "normal",
+  display: "swap",
+});
+
 const isVercelPreview = process.env.VERCEL_ENV === "preview";
 
 export const metadata: Metadata = {
@@ -48,7 +56,10 @@ export default function RootLayout({
   children,
 }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={nunitoSans.variable}>
+    <html
+      lang="es"
+      className={`${nunitoSans.variable} ${quicksand.variable}`}
+    >
       <body>{children}</body>
     </html>
   );
