@@ -82,7 +82,7 @@ export function Footer({ contactSettings }: FooterProps) {
             }`}
           >
             <div className="flex flex-col items-center md:items-start">
-              <Brand />
+              <Brand variant="full" />
 
               <p className="mt-6 max-w-sm leading-7 text-foreground">
                 Asociación de Familiares y Amigos de Pacientes con Trastornos Mentales y/o Discapacidad Mental
