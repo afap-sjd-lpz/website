@@ -1,13 +1,15 @@
 import type {Metadata} from "next";
-import {Nunito_Sans} from "next/font/google";
+import localFont from "next/font/local";
 
 import {siteUrl} from "@/config/site.config";
 
 import "./globals.css";
 
-const nunitoSans = Nunito_Sans({
+const nunitoSans = localFont({
+  src: "./fonts/nunito-sans-variable.woff2",
   variable: "--font-nunito-sans",
-  subsets: ["latin"],
+  weight: "200 1000",
+  style: "normal",
   display: "swap",
 });
 
