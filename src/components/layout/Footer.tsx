@@ -85,7 +85,7 @@ export function Footer({ contactSettings }: FooterProps) {
               <Brand />
 
               <p className="mt-6 max-w-sm leading-7 text-foreground">
-                Asociación de Familiares y Amigos de Pacientes con Discapacidad Mental
+                Asociación de Familiares y Amigos de Pacientes con Trastornos Mentales y/o Discapacidad Mental
               </p>
             </div>
 
