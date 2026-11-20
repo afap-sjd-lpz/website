@@ -20,23 +20,32 @@ Sitio web institucional de la Asociación de Familiares y Amigos de Pacientes co
 
 - Node.js 22 (el desarrollo actual utiliza 22.14.0).
 - pnpm 10.12.4, configurado mediante `packageManager`.
+- Infisical CLI, con acceso autorizado al proyecto AFAP.
 
 ## Instalación y desarrollo local
 
 ```bash
 pnpm install
-pnpm dev
+infisical login
+infisical run --env=dev -- pnpm dev
 ```
 
 El sitio queda disponible en [http://localhost:3000](http://localhost:3000) y el Studio en [http://localhost:3000/studio](http://localhost:3000/studio).
 
+`infisical login` solo es necesario al configurar o renovar la sesión local. El archivo `.infisical.yaml` vincula el repositorio con el proyecto correcto e Infisical inyecta las variables de `dev` únicamente en el proceso de desarrollo, sin escribirlas en archivos locales.
+
+Para probar el sitio desde otros dispositivos de la red, `NEXT_ALLOWED_DEV_ORIGINS` admite uno o varios hostnames separados por comas. Esta variable es opcional y debe configurarse solamente en el entorno `dev` de Infisical; no corresponde a Preview ni Production.
+
 ## Variables de entorno
 
-Copia `.env.example` como `.env.local` y completa los valores correspondientes. `.env.local` no debe versionarse.
+`.env.example` documenta el contrato de variables del proyecto, pero el flujo recomendado obtiene sus valores desde Infisical. `.env.local` queda disponible únicamente como alternativa excepcional y no debe versionarse ni mezclarse con Infisical sin comprobar qué origen tiene precedencia.
 
 ```dotenv
 # Sitio público
 SITE_URL=
+
+# Desarrollo local opcional
+NEXT_ALLOWED_DEV_ORIGINS=
 
 # Resend
 RESEND_API_KEY=
@@ -57,6 +66,8 @@ NEXT_PUBLIC_SANITY_API_VERSION=
 `SITE_URL` debe contener el origen canónico del sitio, sin rutas adicionales. En desarrollo se usa `http://localhost:3000` cuando la variable no está definida.
 
 `NEXT_PUBLIC_SANITY_API_VERSION` es opcional: el proyecto utiliza una versión estable definida en `src/sanity/env.ts` cuando no se proporciona. Ninguna clave privada debe usar el prefijo `NEXT_PUBLIC_`.
+
+Los valores se guardan sin comillas envolventes, salvo que las comillas formen parte real del valor. `TURNSTILE_EXPECTED_HOSTNAME` contiene únicamente el hostname esperado, por ejemplo `afap.salud.bo`, sin protocolo, ruta ni barra final.
 
 ## Estructura general
 
@@ -117,4 +128,16 @@ pnpm start
 
 ## Despliegue
 
-El sitio se despliega en Vercel. La rama `develop` concentra el trabajo de desarrollo y `main` representa producción. Las variables de entorno deben configurarse en Vercel para el entorno correspondiente; no deben incorporarse al repositorio.
+El sitio se despliega en Vercel y utiliza la siguiente correspondencia:
+
+| Uso | Rama | Entorno de Vercel | Variables |
+| --- | --- | --- | --- |
+| Desarrollo local | Cualquiera | No aplica | Infisical `dev` mediante la CLI |
+| Preview | Cualquier rama distinta de `main`, normalmente `develop` | Preview | Secretos sincronizados desde Infisical hacia Vercel Preview |
+| Producción | `main` | Production | Secretos sincronizados desde Infisical hacia Vercel Production |
+
+Los pushes a `develop` y a otras ramas distintas de `main` generan despliegues Preview. Los cambios incorporados a `main` generan el despliegue de Production. Vercel construye y ejecuta la aplicación con las variables del destino correspondiente; cuando se modifica una variable utilizada durante build o runtime, se debe confirmar su sincronización y generar un nuevo despliegue.
+
+Vercel expone `VERCEL_ENV=preview` en Preview y `VERCEL_ENV=production` en Production. El proyecto utiliza esta distinción para impedir la indexación de los despliegues Preview, mientras Production permanece indexable.
+
+Los secretos nunca deben incorporarse al repositorio. `.infisical.yaml` contiene únicamente la referencia al proyecto de Infisical y sí debe versionarse.
